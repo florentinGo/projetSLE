@@ -8,7 +8,7 @@
 <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;/tp/xph3sle/xph3sle512/ProjetSLE/zybo_cam/vhd/coregen/tmp/_cg/ram_init.vhd&quot; into library work</arg>
+<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/coregen/tmp/_cg/mem_jpeg2000.vhd&quot; into library work</arg>
 </msg>
 
 </messages>

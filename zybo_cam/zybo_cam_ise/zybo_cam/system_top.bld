@@ -4,8 +4,8 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Command Line:
 /softl2/XILINX/ise_edk_147i/14.7/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild
 -intstyle ise -dd _ngo -sd
-../../../dataCatapultC/Catapult/Main_Comp_Decomp_tot__Main_Fonction.v1/psr_vhdl_
-impl -sd ../../vhd/coregen -nt timestamp -uc
+../../../dataCatapultC/Catapult_2/Main_Comp_Decomp_Tot__Main_Fonction.v1/psr_vhd
+l_impl -sd ../../vhd/coregen -nt timestamp -uc
 /tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.ucf -bm
 edkBmmFile.bmm -p xc7z010-clg400-3 system_top.ngc system_top.ngd
 
@@ -19,11 +19,11 @@ Loading design module
 "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_proc
 essing_system7_0_wrapper.ngc"...
 Loading design module "../../vhd/coregen/mem_lum_opt.ngc"...
-Reading module "Main_Comp_Decomp_tot_Main_Fonction.ngo" (
-"Main_Comp_Decomp_tot_Main_Fonction.ngo" unchanged since last run )...
+Reading module "Main_Comp_Decomp_Tot_Main_Fonction.ngo" (
+"Main_Comp_Decomp_Tot_Main_Fonction.ngo" unchanged since last run )...
 Loading design module
 "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/_ngo/Main_C
-omp_Decomp_tot_Main_Fonction.ngo"...
+omp_Decomp_Tot_Main_Fonction.ngo"...
 Applying constraints in
 "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_proc
 essing_system7_0_wrapper.ncf" to module "system_i/processing_system7_0"...
@@ -65,6 +65,8 @@ WARNING::53 - File 'edkBmmFile.bmm' is empty or has no BMM content.
 Checking expanded design ...
 WARNING:NgdBuild:478 - clock net vga/reset_BUFG with clock driver vga/reset_BUFG
    drives no clock pins
+WARNING:NgdBuild:452 - logical net 'N136' has no driver
+WARNING:NgdBuild:452 - logical net 'N137' has no driver
 WARNING:NgdBuild:452 - logical net 'N138' has no driver
 WARNING:NgdBuild:452 - logical net 'N139' has no driver
 WARNING:NgdBuild:452 - logical net 'N140' has no driver
@@ -179,8 +181,8 @@ WARNING:NgdBuild:452 - logical net 'N248' has no driver
 WARNING:NgdBuild:452 - logical net 'N249' has no driver
 WARNING:NgdBuild:452 - logical net 'N250' has no driver
 WARNING:NgdBuild:452 - logical net 'N251' has no driver
-WARNING:NgdBuild:452 - logical net 'N252' has no driver
-WARNING:NgdBuild:452 - logical net 'N253' has no driver
+WARNING:NgdBuild:452 - logical net 'N256' has no driver
+WARNING:NgdBuild:452 - logical net 'N257' has no driver
 WARNING:NgdBuild:452 - logical net 'N258' has no driver
 WARNING:NgdBuild:452 - logical net 'N259' has no driver
 WARNING:NgdBuild:452 - logical net 'N260' has no driver
@@ -191,12 +193,6 @@ WARNING:NgdBuild:452 - logical net 'N264' has no driver
 WARNING:NgdBuild:452 - logical net 'N265' has no driver
 WARNING:NgdBuild:452 - logical net 'N266' has no driver
 WARNING:NgdBuild:452 - logical net 'N267' has no driver
-WARNING:NgdBuild:452 - logical net 'N268' has no driver
-WARNING:NgdBuild:452 - logical net 'N269' has no driver
-WARNING:NgdBuild:452 - logical net 'comp_decomp_tot/change_mode_rsc_z(3)' has no
-   driver
-WARNING:NgdBuild:452 - logical net 'comp_decomp_tot/nblevels_rsc_z(3)' has no
-   driver
 
 Partition Implementation Status
 -------------------------------
@@ -207,9 +203,9 @@ Partition Implementation Status
 
 NGDBUILD Design Results Summary:
   Number of errors:     0
-  Number of warnings: 131
+  Number of warnings: 129
 
-Total memory usage is 580000 kilobytes
+Total memory usage is 579888 kilobytes
 
 Writing NGD file "system_top.ngd" ...
 Total REAL time to NGDBUILD completion:  58 sec

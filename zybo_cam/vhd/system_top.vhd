@@ -122,7 +122,7 @@ end component VGA_generator;
 component Camera_Capture
     Port ( pclk : in STD_LOGIC;
     	   reset : in STD_LOGIC;
-         href : in STD_LOGIC;
+         	href : in STD_LOGIC;
 			vs_cam : in STD_LOGIC;
 			data_in : in STD_LOGIC_VECTOR (7 downto 0);
 			addr : out STD_LOGIC_VECTOR (16 downto 0);
@@ -134,12 +134,12 @@ end component Camera_Capture;
 
 component mem_lum_opt
 	 Port ( clka : in STD_LOGIC;
-		wea : in STD_LOGIC_VECTOR(0 DOWNTO 0);
+			wea : in STD_LOGIC_VECTOR(0 DOWNTO 0);
     		addra : in STD_LOGIC_VECTOR(16 DOWNTO 0);
     		dina : in STD_LOGIC_VECTOR(7 DOWNTO 0);
     		clkb : in STD_LOGIC;
-   		addrb : in STD_LOGIC_VECTOR(16 DOWNTO 0);
-   		doutb : out STD_LOGIC_VECTOR(7 DOWNTO 0));
+   			addrb : in STD_LOGIC_VECTOR(16 DOWNTO 0);
+   			doutb : out STD_LOGIC_VECTOR(7 DOWNTO 0));
 end component mem_lum_opt;
 
 component multiplexer_RGB is
@@ -160,14 +160,12 @@ component multiplexer_RGB is
 			VGA_b : out STD_LOGIC_VECTOR (4 downto 0));
 end component multiplexer_RGB;
 
-component Main_Comp_Decomp_tot_Main_Fonction is 
+component Main_Comp_Decomp_Tot_Main_Fonction is 
 	Port ( 
     start : IN STD_LOGIC;
     done : OUT STD_LOGIC;
-    nblevels_rsc_z : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
-    change_mode_rsc_z : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
-    nbLevels_triosy_lz : OUT STD_LOGIC;
-	change_mode_triosy_lz : OUT STD_LOGIC;
+    nblevels_rsc_z : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+    nblevels_triosy_lz : OUT STD_LOGIC;
     Src_triosy_lz : OUT STD_LOGIC;
     Comp_triosy_lz : OUT STD_LOGIC;
     Vga_triosy_lz : OUT STD_LOGIC;
@@ -190,7 +188,7 @@ component Main_Comp_Decomp_tot_Main_Fonction is
     Vga_rsc_singleport_we : OUT STD_LOGIC;
     Vga_rsc_singleport_data_out : IN STD_LOGIC_VECTOR (7 DOWNTO 0)
   );
-end component Main_Comp_Decomp_tot_Main_Fonction;
+end component Main_Comp_Decomp_Tot_Main_Fonction;
 
 --Ajout Ram_init
 component ram_init is
@@ -242,15 +240,10 @@ signal etat_cam_q, etat_cam_d : FSM_with_cam;
 signal saturate_sig : STD_LOGIC;
 
 -- Added for control of the level of compression
-signal nbLev_sig_q, nbLev_sig_d : STD_LOGIC_VECTOR (2 DOWNTO 0);
+signal nbLev_sig_q, nbLev_sig_d : STD_LOGIC_VECTOR (3 DOWNTO 0);
 signal pushed_q, pushed_d : BOOLEAN;
 type FSM_compression is (rst, switch_inc, switch_wait, switch_3);
 signal etat_comp_q, etat_comp_d : FSM_compression;
-
---Change  mode
-signal change_mode_sig : STD_LOGIC_VECTOR (2 DOWNTO 0);
-
-
 
 begin
 
@@ -289,7 +282,7 @@ begin
 		if clk_VGA'event and clk_VGA = '1' then
 			if rst_VGA = '1' then
 				etat_comp_q <= rst;
-				nbLev_sig_q <= "000";
+				nbLev_sig_q <= "0000";
 				
 			else
 				etat_comp_q <= etat_comp_d;
@@ -308,7 +301,7 @@ begin
 		case etat_comp_q is
 			when rst =>
 
-				nbLev_sig_d <= "000";
+				nbLev_sig_d <= "0000";
 
 				if push_io(0) = '1' then
 					etat_comp_d <= switch_wait;
@@ -489,15 +482,7 @@ begin
 				addrb_3 <= address_VGA;
 				data_VGA <= saturate(doutb_3, saturate_sig);	
 			end if;
-		end process;
-		
-		--Change mode
-		change_mode_process: process(switch_io)
-		begin 
-			if(switch_io(3) = '1') then
-				change_mode_sig <= "001";
-			end if;
-		end process;
+		end process;		
 		
 system_i: system
 	 Port map ( processing_system7_0_MIO => processing_system7_0_MIO,
@@ -642,14 +627,12 @@ mux: multiplexer_RGB
 			  VGA_b => BLUE
 			  );
 
-comp_decomp_tot : Main_Comp_Decomp_tot_Main_Fonction
+comp_decomp_tot : Main_Comp_Decomp_Tot_Main_Fonction
 	Port map ( 
 		start => start_signal,
 		done => done_signal,
 		nblevels_rsc_z => nbLev_sig_q,
-		change_mode_rsc_z => change_mode_sig,
 		nblevels_triosy_lz => open,
-		change_mode_triosy_lz => open,
 		Src_triosy_lz => open,
 		Vga_triosy_lz => open,
 		Comp_triosy_lz => open,

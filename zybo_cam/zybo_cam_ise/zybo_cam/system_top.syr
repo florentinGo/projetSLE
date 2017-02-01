@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> 
 Reading design: system_top.prj
@@ -103,7 +103,7 @@ Auto BRAM Packing                  : NO
 Slice Utilization Ratio Delta      : 5
 
 ---- Other Options
-Cores Search Directories           : {"../../../dataCatapultC/Catapult/Main_Comp_Decomp_tot__Main_Fonction.v1/psr_vhdl_impl" "../../vhd/coregen"  }
+Cores Search Directories           : {"../../../dataCatapultC/Catapult_2/Main_Comp_Decomp_Tot__Main_Fonction.v1/psr_vhdl_impl" "../../vhd/coregen"  }
 
 =========================================================================
 
@@ -122,9 +122,6 @@ Parsing architecture <Behavioral> of entity <vga_generator>.
 Parsing VHDL file "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/multiplexer_RGB.vhd" into library work
 Parsing entity <multiplexer_RGB>.
 Parsing architecture <Behavioral> of entity <multiplexer_rgb>.
-Parsing VHDL file "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/coregen/mem_lum_opt.vhd" into library work
-Parsing entity <mem_lum_opt>.
-Parsing architecture <mem_lum_opt_a> of entity <mem_lum_opt>.
 Parsing VHDL file "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/clk_pll.vhd" into library work
 Parsing entity <clk_pll>.
 Parsing architecture <xilinx> of entity <clk_pll>.
@@ -148,8 +145,7 @@ Elaborating entity <clk_pll> (architecture <xilinx>) from library <work>.
 Elaborating entity <VGA_generator> (architecture <Behavioral>) from library <work>.
 
 Elaborating entity <Camera_Capture> (architecture <Behavioral>) from library <work>.
-
-Elaborating entity <mem_lum_opt> (architecture <mem_lum_opt_a>) from library <work>.
+WARNING:HDLCompiler:89 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" Line 135: <mem_lum_opt> remains a black-box since it has no binding entity.
 
 Elaborating entity <multiplexer_RGB> (architecture <Behavioral>) from library <work>.
 WARNING:HDLCompiler:89 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" Line 163: <main_comp_decomp_tot_main_fonction> remains a black-box since it has no binding entity.
@@ -161,17 +157,17 @@ WARNING:HDLCompiler:89 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/syst
 Synthesizing Unit <system_top>.
     Related source file is "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd".
     Set property "BOX_TYPE = user_black_box" for instance <system_i>.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 572: Output port <coord_x> of the instance <capture> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 572: Output port <coord_y> of the instance <capture> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 645: Output port <nbLevels_triosy_lz> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 645: Output port <change_mode_triosy_lz> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 645: Output port <Src_triosy_lz> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 645: Output port <Comp_triosy_lz> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 645: Output port <Vga_triosy_lz> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 645: Output port <Src_rsc_singleport_re> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 645: Output port <Comp_rsc_singleport_re> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 645: Output port <Vga_rsc_singleport_re> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
-    Found 3-bit register for signal <nbLev_sig_q>.
+WARNING:Xst:647 - Input <switch_io<3:3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 557: Output port <coord_x> of the instance <capture> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 557: Output port <coord_y> of the instance <capture> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 630: Output port <nblevels_triosy_lz> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 630: Output port <Src_triosy_lz> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 630: Output port <Comp_triosy_lz> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 630: Output port <Vga_triosy_lz> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 630: Output port <Src_rsc_singleport_re> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 630: Output port <Comp_rsc_singleport_re> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vhd" line 630: Output port <Vga_rsc_singleport_re> of the instance <comp_decomp_tot> is unconnected or connected to loadless signal.
+    Found 4-bit register for signal <nbLev_sig_q>.
     Found 2-bit register for signal <etat_cam_q>.
     Found 8-bit register for signal <CAMERA_DATA_q>.
     Found 1-bit register for signal <CAMERA_HS_q>.
@@ -205,12 +201,12 @@ INFO:Xst:3210 - "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.vh
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 3-bit adder for signal <nbLev_sig_q[2]_GND_8_o_add_6_OUT> created at line 326.
-    Found 8-bit adder for signal <_n0136> created at line 432.
-    Found 8-bit adder for signal <GND_8_o_GND_8_o_add_17_OUT> created at line 432.
+    Found 4-bit adder for signal <nbLev_sig_q[3]_GND_8_o_add_6_OUT> created at line 319.
+    Found 8-bit adder for signal <_n0132> created at line 425.
+    Found 8-bit adder for signal <GND_8_o_GND_8_o_add_17_OUT> created at line 425.
     Summary:
 	inferred   3 Adder/Subtractor(s).
-	inferred  13 D-type flip-flop(s).
+	inferred  14 D-type flip-flop(s).
 	inferred   8 Multiplexer(s).
 	inferred   2 Finite State Machine(s).
 Unit <system_top> synthesized.
@@ -232,11 +228,11 @@ Synthesizing Unit <VGA_generator>.
     Found 17-bit register for signal <addr>.
     Found 1-bit register for signal <activeArea>.
     Found 1-bit register for signal <reset>.
-    Found 32-bit adder for signal <Hcnt[31]_GND_45_o_add_1_OUT> created at line 68.
-    Found 32-bit adder for signal <Vcnt[31]_GND_45_o_add_3_OUT> created at line 72.
-    Found 17-bit adder for signal <GND_45_o_PWR_12_o_add_8_OUT> created at line 41.
-    Found 32-bit subtractor for signal <Hcnt[31]_GND_45_o_sub_19_OUT<31:0>> created at line 92.
-    Found 32-bit subtractor for signal <Vcnt[31]_GND_45_o_sub_23_OUT<31:0>> created at line 103.
+    Found 32-bit adder for signal <Hcnt[31]_GND_42_o_add_1_OUT> created at line 68.
+    Found 32-bit adder for signal <Vcnt[31]_GND_42_o_add_3_OUT> created at line 72.
+    Found 17-bit adder for signal <GND_42_o_PWR_12_o_add_8_OUT> created at line 41.
+    Found 32-bit subtractor for signal <Hcnt[31]_GND_42_o_sub_19_OUT<31:0>> created at line 92.
+    Found 32-bit subtractor for signal <Vcnt[31]_GND_42_o_sub_23_OUT<31:0>> created at line 103.
     Found 9x8-bit multiplier for signal <n0081> created at line 41.
     Found 32-bit comparator lessequal for signal <n0016> created at line 90
     Found 32-bit comparator lessequal for signal <n0018> created at line 90
@@ -275,11 +271,11 @@ Synthesizing Unit <Camera_Capture>.
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
     Found 17-bit adder for signal <addr> created at line 41.
-    Found 32-bit adder for signal <Hcnt_q[31]_GND_47_o_add_12_OUT> created at line 134.
-    Found 32-bit adder for signal <Vcnt_q[31]_GND_47_o_add_15_OUT> created at line 142.
+    Found 32-bit adder for signal <Hcnt_q[31]_GND_44_o_add_12_OUT> created at line 134.
+    Found 32-bit adder for signal <Vcnt_q[31]_GND_44_o_add_15_OUT> created at line 142.
     Found 9x8-bit multiplier for signal <n0078> created at line 41.
-    Found 32-bit comparator greater for signal <GND_47_o_Hcnt_q[31]_LessThan_12_o> created at line 133
-    Found 32-bit comparator greater for signal <GND_47_o_Vcnt_q[31]_LessThan_15_o> created at line 140
+    Found 32-bit comparator greater for signal <GND_44_o_Hcnt_q[31]_LessThan_12_o> created at line 133
+    Found 32-bit comparator greater for signal <GND_44_o_Vcnt_q[31]_LessThan_15_o> created at line 140
     Summary:
 	inferred   1 Multiplier(s).
 	inferred   3 Adder/Subtractor(s).
@@ -313,17 +309,17 @@ Macro Statistics
  9x8-bit multiplier                                    : 2
 # Adders/Subtractors                                   : 11
  17-bit adder                                          : 2
- 3-bit adder                                           : 1
  32-bit adder                                          : 4
  32-bit subtractor                                     : 2
+ 4-bit adder                                           : 1
  8-bit adder                                           : 2
 # Registers                                            : 22
  1-bit register                                        : 8
  10-bit register                                       : 1
  16-bit register                                       : 1
  17-bit register                                       : 1
- 3-bit register                                        : 1
  32-bit register                                       : 4
+ 4-bit register                                        : 1
  5-bit register                                        : 2
  6-bit register                                        : 1
  8-bit register                                        : 2
@@ -335,8 +331,8 @@ Macro Statistics
  1-bit 2-to-1 multiplexer                              : 2
  16-bit 2-to-1 multiplexer                             : 2
  17-bit 2-to-1 multiplexer                             : 3
- 3-bit 2-to-1 multiplexer                              : 1
  32-bit 2-to-1 multiplexer                             : 6
+ 4-bit 2-to-1 multiplexer                              : 1
  5-bit 2-to-1 multiplexer                              : 4
  6-bit 2-to-1 multiplexer                              : 2
  8-bit 2-to-1 multiplexer                              : 1
@@ -351,13 +347,13 @@ Macro Statistics
 Reading core <system.ngc>.
 Reading core <system_processing_system7_0_wrapper.ngc>.
 Reading core <../../vhd/coregen/mem_lum_opt.ngc>.
-Launcher: Main_Comp_Decomp_tot_Main_Fonction.ngo is up to date
+Launcher: Main_Comp_Decomp_Tot_Main_Fonction.ngo is up to date
 Loading core <system_processing_system7_0_wrapper> for timing and area information for instance <processing_system7_0>.
 Loading core <system> for timing and area information for instance <system_i>.
 Loading core <mem_lum_opt> for timing and area information for instance <ram1>.
 Loading core <mem_lum_opt> for timing and area information for instance <ram2>.
 Loading core <mem_lum_opt> for timing and area information for instance <ram3>.
-Loading core <Main_Comp_Decomp_tot_Main_Fonction> for timing and area information for instance <comp_decomp_tot>.
+Loading core <Main_Comp_Decomp_Tot_Main_Fonction> for timing and area information for instance <comp_decomp_tot>.
 WARNING:Xst:2677 - Node <coord_x_0> of sequential type is unconnected in block <vga>.
 WARNING:Xst:2677 - Node <coord_y_0> of sequential type is unconnected in block <vga>.
 WARNING:Xst:2677 - Node <coord_y_7> of sequential type is unconnected in block <vga>.
@@ -371,7 +367,7 @@ Unit <Camera_Capture> synthesized (advanced).
 Synthesizing (advanced) Unit <VGA_generator>.
 The following registers are absorbed into counter <Hcnt>: 1 register on signal <Hcnt>.
 The following registers are absorbed into counter <Vcnt>: 1 register on signal <Vcnt>.
-	Multiplier <Mmult_n0081> in block <VGA_generator> and adder/subtractor <Madd_GND_45_o_PWR_12_o_add_8_OUT> in block <VGA_generator> are combined into a MAC<Maddsub_n0081>.
+	Multiplier <Mmult_n0081> in block <VGA_generator> and adder/subtractor <Madd_GND_42_o_PWR_12_o_add_8_OUT> in block <VGA_generator> are combined into a MAC<Maddsub_n0081>.
 	The following registers are also absorbed by the MAC: <addr> in block <VGA_generator>.
 Unit <VGA_generator> synthesized (advanced).
 
@@ -390,8 +386,8 @@ Macro Statistics
  32-bit subtractor                                     : 2
  8-bit adder                                           : 2
 # Counters                                             : 4
- 3-bit up counter                                      : 1
  32-bit up counter                                     : 3
+ 4-bit up counter                                      : 1
 # Registers                                            : 107
  Flip-Flops                                            : 107
 # Comparators                                          : 10
@@ -583,8 +579,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 116
- Flip-Flops                                            : 116
+# Registers                                            : 117
+ Flip-Flops                                            : 117
 
 =========================================================================
 
@@ -607,28 +603,28 @@ Top Level Output File Name         : system_top.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 25414
-#      GND                         : 25
-#      INV                         : 252
-#      LUT1                        : 86
-#      LUT2                        : 1418
-#      LUT3                        : 982
-#      LUT4                        : 2135
-#      LUT5                        : 4629
-#      LUT6                        : 5245
-#      MUXCY                       : 5435
-#      VCC                         : 23
-#      XORCY                       : 5184
-# FlipFlops/Latches                : 3883
+# BELS                             : 25331
+#      GND                         : 23
+#      INV                         : 270
+#      LUT1                        : 55
+#      LUT2                        : 1226
+#      LUT3                        : 878
+#      LUT4                        : 2177
+#      LUT5                        : 4850
+#      LUT6                        : 5204
+#      MUXCY                       : 5436
+#      VCC                         : 21
+#      XORCY                       : 5191
+# FlipFlops/Latches                : 3913
 #      FD                          : 47
 #      FDC                         : 3
 #      FDCE                        : 27
 #      FDE                         : 15
 #      FDR                         : 14
-#      FDRE                        : 3775
-#      FDSE                        : 2
-# RAMS                             : 59
-#      RAMB36E1                    : 59
+#      FDRE                        : 3803
+#      FDSE                        : 4
+# RAMS                             : 58
+#      RAMB36E1                    : 58
 # Clock Buffers                    : 6
 #      BUFG                        : 5
 #      BUFGP                       : 1
@@ -650,24 +646,24 @@ Selected Device : 7z010clg400-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            3883  out of  35200    11%  
- Number of Slice LUTs:                14747  out of  17600    83%  
-    Number used as Logic:             14747  out of  17600    83%  
+ Number of Slice Registers:            3913  out of  35200    11%  
+ Number of Slice LUTs:                14660  out of  17600    83%  
+    Number used as Logic:             14660  out of  17600    83%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:  17298
-   Number with an unused Flip Flop:   13415  out of  17298    77%  
-   Number with an unused LUT:          2551  out of  17298    14%  
-   Number of fully used LUT-FF pairs:  1332  out of  17298     7%  
-   Number of unique control sets:       107
+ Number of LUT Flip Flop pairs used:  17197
+   Number with an unused Flip Flop:   13284  out of  17197    77%  
+   Number with an unused LUT:          2537  out of  17197    14%  
+   Number of fully used LUT-FF pairs:  1376  out of  17197     8%  
+   Number of unique control sets:       117
 
 IO Utilization: 
  Number of IOs:                         175
  Number of bonded IOBs:                  47  out of    100    47%  
 
 Specific Feature Utilization:
- Number of Block RAM/FIFO:               59  out of     60    98%  
-    Number using Block RAM only:         59
+ Number of Block RAM/FIFO:               58  out of     60    96%  
+    Number using Block RAM only:         58
  Number of BUFG/BUFGCTRLs:                6  out of     32    18%  
  Number of DSP48E1s:                      8  out of     80    10%  
 
@@ -693,7 +689,7 @@ Clock Information:
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
 CAMERA_PCLK                        | BUFGP                  | 59    |
-pll/clkout0                        | BUFG                   | 3900  |
+pll/clkout0                        | BUFG                   | 3930  |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -702,8 +698,8 @@ Asynchronous Control Signals Information:
 Control Signal                                                                                                                                                                                                                                                                  | Buffer(FF name)                                                                                                                                   | Load  |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 ram1/N1(ram1/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B) | 44    |
-ram2/N1(ram2/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram2/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram)     | 22    |
-ram3/N1(ram3/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B) | 22    |
+ram2/N1(ram2/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram2/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B) | 22    |
+ram3/N1(ram3/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram)     | 22    |
 ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/cascadelata_tmp(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B:CASCADEOUTA)  | NONE(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_T) | 2     |
 ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/cascadelatb_tmp(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B:CASCADEOUTB)  | NONE(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_T) | 2     |
 ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v6_noinit.ram/cascadelata_tmp(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B:CASCADEOUTA)| NONE(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_T)| 2     |
@@ -758,7 +754,7 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 126.130ns (Maximum Frequency: 7.928MHz)
+   Minimum period: 126.143ns (Maximum Frequency: 7.928MHz)
    Minimum input arrival time before clock: 1.023ns
    Maximum output required time after clock: 0.539ns
    Maximum combinational path delay: 0.612ns
@@ -769,21 +765,21 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'pll/clkout0'
-  Clock period: 126.130ns (frequency: 7.928MHz)
-  Total number of paths / destination ports: 15786582914529825841425566795442923108328489300752756566709160977253953433852361910345156080668643466570856634645062204925893465325174784 / 7481
+  Clock period: 126.143ns (frequency: 7.928MHz)
+  Total number of paths / destination ports: 15786582914529823259175688708534333452409317297740882237003368148030440603193005369697534063827448836925503354507230769022721492577681408 / 7507
 -------------------------------------------------------------------------
-Delay:               126.130ns (Levels of Logic = 2319)
-  Source:            comp_decomp_tot/Main_Comp_Decomp_tot_Main_Fonction_core_inst/reg_reg_div_mgc_div_a_tmp(2) (FF)
-  Destination:       comp_decomp_tot/Main_Comp_Decomp_tot_Main_Fonction_core_inst/reg_dec_decompress_high_1_sva_1(29) (FF)
+Delay:               126.143ns (Levels of Logic = 2320)
+  Source:            comp_decomp_tot/Main_Comp_Decomp_Tot_Main_Fonction_core_inst/reg_reg_div_mgc_div_a_tmp(2) (FF)
+  Destination:       comp_decomp_tot/Main_Comp_Decomp_Tot_Main_Fonction_core_inst/reg_dec_decompress_high_1_sva_1(30) (FF)
   Source Clock:      pll/clkout0 rising
   Destination Clock: pll/clkout0 rising
 
-  Data Path: comp_decomp_tot/Main_Comp_Decomp_tot_Main_Fonction_core_inst/reg_reg_div_mgc_div_a_tmp(2) to comp_decomp_tot/Main_Comp_Decomp_tot_Main_Fonction_core_inst/reg_dec_decompress_high_1_sva_1(29)
+  Data Path: comp_decomp_tot/Main_Comp_Decomp_Tot_Main_Fonction_core_inst/reg_reg_div_mgc_div_a_tmp(2) to comp_decomp_tot/Main_Comp_Decomp_Tot_Main_Fonction_core_inst/reg_dec_decompress_high_1_sva_1(30)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDRE:C->Q           100   0.232   0.460  reg_reg_div_mgc_div_a_tmp(2) (p_nbus_div_mgc_div_a_1(64))
-     end scope: 'comp_decomp_tot/Main_Comp_Decomp_tot_Main_Fonction_core_inst:p_nbus_div_mgc_div_a_1(64)'
+     end scope: 'comp_decomp_tot/Main_Comp_Decomp_Tot_Main_Fonction_core_inst:p_nbus_div_mgc_div_a_1(64)'
      begin scope: 'comp_decomp_tot/div_mgc_div:a(66)'
      LUT2:I0->O            1   0.043   0.000  ix52592z1356 (nx52592z38)
      MUXCY:S->O            1   0.230   0.000  ix52592z63414 (nx52592z76)
@@ -2533,7 +2529,7 @@ Delay:               126.130ns (Levels of Logic = 2319)
      MUXCY:CI->O           1   0.013   0.000  ix52592z63968 (nx52592z630)
      MUXCY:CI->O           1   0.013   0.000  ix52592z63967 (nx52592z629)
      MUXCY:CI->O           1   0.013   0.000  ix52592z63966 (nx52592z628)
-     MUXCY:CI->O           0   0.013   0.000  ix52592z63965 (nx52592z627)
+     MUXCY:CI->O           0   0.012   0.000  ix52592z63965 (nx52592z627)
      XORCY:CI->O         126   0.251   0.663  ix52592z20188 (nx52592z626)
      LUT5:I0->O            2   0.043   0.284  ix52592z29341 (nx52592z7490)
      MUXCY:DI->O           1   0.218   0.000  ix52592z63956 (nx52592z618)
@@ -3039,8 +3035,8 @@ Delay:               126.130ns (Levels of Logic = 2319)
      MUXCY:CI->O           1   0.012   0.000  ix52592z63369 (nx52592z30)
      MUXCY:CI->O           1   0.012   0.000  ix52592z63368 (nx52592z29)
      MUXCY:CI->O           1   0.012   0.000  ix52592z63367 (nx52592z28)
-     MUXCY:CI->O           1   0.013   0.000  ix52592z63366 (nx52592z27)
-     MUXCY:CI->O           1   0.013   0.000  ix52592z63365 (nx52592z26)
+     MUXCY:CI->O           1   0.012   0.000  ix52592z63366 (nx52592z27)
+     MUXCY:CI->O           1   0.012   0.000  ix52592z63365 (nx52592z26)
      MUXCY:CI->O           1   0.013   0.000  ix52592z63364 (nx52592z25)
      MUXCY:CI->O           1   0.013   0.000  ix52592z63363 (nx52592z24)
      MUXCY:CI->O           1   0.013   0.000  ix52592z63362 (nx52592z23)
@@ -3069,45 +3065,46 @@ Delay:               126.130ns (Levels of Logic = 2319)
      MUXCY:S->O            1   0.230   0.000  z_addsub67_0_muxcy_0 (nx52591z1)
      XORCY:CI->O           3   0.251   0.552  z_addsub67_0_xorcy_1 (z(1))
      end scope: 'comp_decomp_tot/div_mgc_div:z(1)'
-     begin scope: 'comp_decomp_tot/Main_Comp_Decomp_tot_Main_Fonction_core_inst:p_nbus_Main_Comp_Decomp_tot_Main_Fonction_core_inst_div_mgc_div_z(30)'
-     LUT5:I0->O            1   0.043   0.343  ix41469z1313 (nx41469z2)
-     LUT6:I4->O            1   0.043   0.000  ix18692z61410 (nx18692z1)
-     MUXCY:S->O            1   0.230   0.000  z_out_16_add32_9_muxcy_1 (nx41470z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_2 (nx41471z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_3 (nx41472z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_4 (nx41473z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_5 (nx41474z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_6 (nx41475z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_7 (nx41476z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_8 (nx41477z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_9 (nx56961z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_10 (nx56962z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_11 (nx56963z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_12 (nx56964z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_13 (nx56965z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_14 (nx56966z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_15 (nx56967z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_16 (nx56968z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_17 (nx56969z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_18 (nx56970z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_19 (nx57958z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_20 (nx57959z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_21 (nx57960z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_22 (nx57961z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_23 (nx57962z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_24 (nx57963z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_25 (nx57964z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_26 (nx57965z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_27 (nx57966z1)
-     MUXCY:CI->O           1   0.013   0.000  z_out_16_add32_9_muxcy_28 (nx57967z1)
-     XORCY:CI->O           6   0.251   0.451  z_out_16_add32_9_xorcy_29 (z_out_16(29))
-     begin scope: 'comp_decomp_tot/Main_Comp_Decomp_tot_Main_Fonction_core_inst/Main_Comp_Decomp_tot_Main_Fonction_core_fsm_inst:p_nbus_Main_Comp_Decomp_tot_Main_Fonction_core_inst_z_out_16(30)'
-     LUT5:I2->O            1   0.043   0.289  ix33025z17505 (px8993)
-     end scope: 'comp_decomp_tot/Main_Comp_Decomp_tot_Main_Fonction_core_inst/Main_Comp_Decomp_tot_Main_Fonction_core_fsm_inst:px8993'
-     LUT5:I4->O            1   0.043   0.000  ix39091z1313 (nx39091z1)
-     FDRE:D                   -0.001          reg_dec_decompress_high_1_sva_1(29)
+     begin scope: 'comp_decomp_tot/Main_Comp_Decomp_Tot_Main_Fonction_core_inst:p_nbus_Main_Comp_Decomp_Tot_Main_Fonction_core_inst_div_mgc_div_z(30)'
+     LUT5:I0->O            1   0.043   0.343  ix144z1313 (nx144z2)
+     LUT6:I4->O            1   0.043   0.000  ix60305z61410 (nx60305z1)
+     MUXCY:S->O            1   0.230   0.000  z_out_18_add32_11_muxcy_1 (nx143z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_2 (nx142z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_3 (nx141z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_4 (nx140z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_5 (nx139z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_6 (nx138z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_7 (nx137z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_8 (nx136z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_9 (nx53088z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_10 (nx53089z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_11 (nx53090z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_12 (nx53091z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_13 (nx38015z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_14 (nx53093z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_15 (nx53094z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_16 (nx53095z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_17 (nx53096z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_18 (nx53097z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_19 (nx54085z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_20 (nx54086z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_21 (nx54087z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_22 (nx54088z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_23 (nx54089z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_24 (nx54090z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_25 (nx54091z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_26 (nx54092z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_27 (nx54093z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_28 (nx54094z1)
+     MUXCY:CI->O           1   0.013   0.000  z_out_18_add32_11_muxcy_29 (nx55082z1)
+     XORCY:CI->O           6   0.251   0.451  z_out_18_add32_11_xorcy_30 (z_out_18(30))
+     begin scope: 'comp_decomp_tot/Main_Comp_Decomp_Tot_Main_Fonction_core_inst/Main_Comp_Decomp_Tot_Main_Fonction_core_fsm_inst:p_nbus_Main_Comp_Decomp_Tot_Main_Fonction_core_inst_z_out_18(1)'
+     LUT4:I1->O            1   0.043   0.289  ix36741z3225 (px8427)
+     end scope: 'comp_decomp_tot/Main_Comp_Decomp_Tot_Main_Fonction_core_inst/Main_Comp_Decomp_Tot_Main_Fonction_core_fsm_inst:px8427'
+     LUT5:I4->O            1   0.043   0.000  ix37095z1313 (nx37095z1)
+     FDRE:D                   -0.001          reg_dec_decompress_high_1_sva_1(30)
     ----------------------------------------
-    Total                    126.130ns (62.223ns logic, 63.907ns route)
+    Total                    126.143ns (62.236ns logic, 63.907ns route)
                                        (49.3% logic, 50.7% route)
 
 =========================================================================
@@ -3227,7 +3224,7 @@ Clock to Setup on destination clock CAMERA_PCLK
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
 CAMERA_PCLK    |    3.862|         |         |         |
-pll/clkout0    |    6.851|         |         |         |
+pll/clkout0    |    6.561|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock pll/clkout0
@@ -3236,21 +3233,21 @@ Clock to Setup on destination clock pll/clkout0
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
 CAMERA_PCLK    |    0.925|         |         |         |
-pll/clkout0    |  126.130|         |         |         |
+pll/clkout0    |  126.143|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 45.00 secs
-Total CPU time to Xst completion: 41.21 secs
+Total CPU time to Xst completion: 41.32 secs
  
 --> 
 
 
-Total memory usage is 607500 kilobytes
+Total memory usage is 607272 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  104 (   0 filtered)
-Number of infos    :   23 (   0 filtered)
+Number of warnings :  106 (   0 filtered)
+Number of infos    :   22 (   0 filtered)
 

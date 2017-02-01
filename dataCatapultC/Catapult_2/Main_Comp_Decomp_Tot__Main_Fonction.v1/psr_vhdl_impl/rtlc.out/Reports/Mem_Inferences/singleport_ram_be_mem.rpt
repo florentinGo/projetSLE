@@ -1,0 +1,11 @@
+Inferred RAM
+------------
+  1. Instance: rtlcsingleport_ram_be_mem_47_n1
+    File: /softslin/catapult2011a_200_12/Mgc_home/pkgs/siflibs/ram_singleport_be_fpga.vhd , Net: mem, Type: single port
+    port 1  write
+    port 1  address width: 9
+    port 1  data width: 32
+    port 2  read
+    port 2  address width: 9
+    port 2  data width: 32
+

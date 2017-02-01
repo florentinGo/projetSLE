@@ -105,8 +105,13 @@ ac_int<8, false> Main_Trans_Ond::moy(ac_int<8, false> v1, ac_int<8, false> v2) {
 /* Retourne la valeur absolue de différence entre v1 et v2
  */
 ac_int<8, false> Main_Trans_Ond::sub(ac_int<8, false> v1, ac_int<8, false> v2) {
-	
-	return (v1 - v2)/2;
+	/*if(v1 > v2){
+	  return  v1 - v2;
+	}
+  else{
+	  return v2 - v1;
+	} pour une "bonne" transposé mais non recomposable avec leur code*/
+	return (v1 - v2)/2; // pour une transposée recomposable mais de mauvaise qualité
 }
 
 /* Copie d'une image

@@ -15,7 +15,7 @@ run
 -rtlview Yes
 -glob_opt AllClockNets
 -read_cores YES
--sd {"../../../dataCatapultC/Catapult/Main_Comp_Decomp_tot__Main_Fonction.v1/psr_vhdl_impl" "../../vhd/coregen"  }
+-sd {"../../../dataCatapultC/Catapult_2/Main_Comp_Decomp_Tot__Main_Fonction.v1/psr_vhdl_impl" "../../vhd/coregen"  }
 -write_timing_constraints NO
 -cross_clock_analysis NO
 -hierarchy_separator /

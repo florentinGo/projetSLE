@@ -122,10 +122,12 @@
       <outfile xil_pn:name="system_processing_system7_0_wrapper.ncf"/>
       <outfile xil_pn:name="system_processing_system7_0_wrapper.ngc"/>
     </transform>
-    <transform xil_pn:end_ts="1485960137" xil_pn:in_ck="-2340904602699431000" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="3408313586394948058" xil_pn:start_ts="1485960086">
+    <transform xil_pn:end_ts="1485970687" xil_pn:in_ck="-2019434085163467359" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="3408313586394948058" xil_pn:start_ts="1485970638">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="system_top.lso"/>
       <outfile xil_pn:name="system_top.ngc"/>
@@ -142,7 +144,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1485960198" xil_pn:in_ck="4561460380581059180" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-8572428888473290002" xil_pn:start_ts="1485960137">
+    <transform xil_pn:end_ts="1485970748" xil_pn:in_ck="4734283801582747005" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-8572428888473290002" xil_pn:start_ts="1485970687">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -153,46 +155,53 @@
       <outfile xil_pn:name="system_top.ngd"/>
       <outfile xil_pn:name="system_top_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1485960581" xil_pn:in_ck="-6757199070100120600" xil_pn:name="TRANEXT_map_virtex7" xil_pn:prop_ck="750526628633349809" xil_pn:start_ts="1485960281">
-      <status xil_pn:value="FailedRun"/>
+    <transform xil_pn:end_ts="1485971226" xil_pn:in_ck="-6757199070100120600" xil_pn:name="TRANEXT_map_virtex7" xil_pn:prop_ck="750526628633349809" xil_pn:start_ts="1485970748">
+      <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
       <outfile xil_pn:name="system_top.pcf"/>
       <outfile xil_pn:name="system_top_map.map"/>
       <outfile xil_pn:name="system_top_map.mrp"/>
+      <outfile xil_pn:name="system_top_map.ncd"/>
       <outfile xil_pn:name="system_top_map.ngm"/>
       <outfile xil_pn:name="system_top_map.xrpt"/>
       <outfile xil_pn:name="system_top_summary.xml"/>
       <outfile xil_pn:name="system_top_usage.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1485959061" xil_pn:in_ck="1154882269117521665" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-1288923720530104205" xil_pn:start_ts="1485958594">
+    <transform xil_pn:end_ts="1485971758" xil_pn:in_ck="1154882269117521665" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-1288923720530104205" xil_pn:start_ts="1485971226">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
+      <outfile xil_pn:name="system_top.ncd"/>
+      <outfile xil_pn:name="system_top.pad"/>
+      <outfile xil_pn:name="system_top.par"/>
+      <outfile xil_pn:name="system_top.ptwx"/>
+      <outfile xil_pn:name="system_top.unroutes"/>
+      <outfile xil_pn:name="system_top.xpi"/>
+      <outfile xil_pn:name="system_top_pad.csv"/>
+      <outfile xil_pn:name="system_top_pad.txt"/>
+      <outfile xil_pn:name="system_top_par.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1485959238" xil_pn:in_ck="7302788935582076026" xil_pn:name="TRANEXT_bitFile_zynq" xil_pn:prop_ck="-8808622799194500101" xil_pn:start_ts="1485959061">
-      <status xil_pn:value="AbortedRun"/>
-      <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="InputRemoved"/>
-    </transform>
-    <transform xil_pn:end_ts="1485959061" xil_pn:in_ck="-6757199070100120732" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1485958894">
+    <transform xil_pn:end_ts="1485971934" xil_pn:in_ck="7302788935582076026" xil_pn:name="TRANEXT_bitFile_zynq" xil_pn:prop_ck="-8808622799194500101" xil_pn:start_ts="1485971758">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
+      <outfile xil_pn:name="system_top.bgn"/>
+      <outfile xil_pn:name="system_top.bit"/>
+      <outfile xil_pn:name="system_top.drc"/>
+      <outfile xil_pn:name="system_top.ut"/>
+      <outfile xil_pn:name="webtalk.log"/>
+      <outfile xil_pn:name="webtalk_pn.xml"/>
+    </transform>
+    <transform xil_pn:end_ts="1485971758" xil_pn:in_ck="-6757199070100120732" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1485971560">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
+      <outfile xil_pn:name="system_top.twr"/>
+      <outfile xil_pn:name="system_top.twx"/>
     </transform>
   </transforms>
 

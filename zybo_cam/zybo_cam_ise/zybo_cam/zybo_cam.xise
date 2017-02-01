@@ -42,18 +42,14 @@
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="80"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="7"/>
     </file>
-    <file xil_pn:name="../../vhd/coregen/mem_lum_opt.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="81"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="5"/>
-    </file>
-    <file xil_pn:name="../../vhd/coregen/mem_lum_opt.ngc" xil_pn:type="FILE_NGC">
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
-    </file>
     <file xil_pn:name="../../vhd/system_top.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="76"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="9"/>
     </file>
-    <file xil_pn:name="../../../dataCatapultC/Catapult/Main_Comp_Decomp_tot__Main_Fonction.v1/psr_vhdl_impl/Main_Comp_Decomp_tot_Main_Fonction.edf" xil_pn:type="FILE_EDIF">
+    <file xil_pn:name="../../vhd/coregen/mem_lum_opt.ngc" xil_pn:type="FILE_NGC">
+      <association xil_pn:name="Implementation" xil_pn:seqID="5"/>
+    </file>
+    <file xil_pn:name="../../../dataCatapultC/Catapult_2/Main_Comp_Decomp_Tot__Main_Fonction.v1/psr_vhdl_impl/Main_Comp_Decomp_Tot_Main_Fonction.edf" xil_pn:type="FILE_EDIF">
       <association xil_pn:name="Implementation" xil_pn:seqID="8"/>
     </file>
   </files>
