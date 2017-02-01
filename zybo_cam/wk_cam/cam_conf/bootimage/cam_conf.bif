@@ -1,0 +1,6 @@
+the_ROM_image:
+{
+	[bootloader]/tp/xph3sle/xph3sle504/TP/zybo_cam/wk_cam/fsbl/Debug/fsbl.elf
+	/tp/xph3sle/xph3sle504/TP/zybo_cam/zybo_cam_ise/zybo_cam/system_top.bit
+	/tp/xph3sle/xph3sle504/TP/zybo_cam/wk_cam/cam_conf/Debug/cam_conf.elf
+}

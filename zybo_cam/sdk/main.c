@@ -1,0 +1,54 @@
+/************************************************************************/
+/*																		*/
+/*	main.c	--	ZYBO_CAMERA						*/
+/*																		*/
+/************************************************************************/
+
+/* ------------------------------------------------------------ */
+/*				Include File Definitions						*/
+/* ------------------------------------------------------------ */
+
+#include "xparameters.h"
+#include "xuartps.h"
+#include "xiicps.h"
+#include "OV9655_camera.h"
+#include "xiicps_hw.h"
+#include "stdio.h"
+
+
+
+/* ------------------------------------------------------------ */
+/*				Procedure Definitions							*/
+/* ------------------------------------------------------------ */
+
+int main(void)
+{
+  XIicPs IIc;
+
+  xil_printf("\x1B[2J"); // Clear terminal
+  xil_printf("Hello\n\r"); // Clear terminal
+  cam_reg_rw cam_config_rw_pclk[]={
+    {OV9655_COM10,  0b11101111, PCLK_POLARITY_REV} // Inverse PCLK
+  };
+  int cam_config_rw_pclk_n=sizeof(cam_config_rw_pclk)/sizeof(cam_reg_rw);
+
+
+  /* Configuration camera */
+  OV9655_InitI2C(&IIc, XPAR_XIICPS_0_DEVICE_ID);
+  OV9655_Config(&IIc, cam_config_640_480, cam_config_640_480_n);
+  OV9655_Config(&IIc, cam_config_640_480, cam_config_640_480_n);
+  xil_printf("Config camera frame OK\n\r");
+  OV9655_Config_rw(&IIc, cam_config_rw_RGB565_15fps, cam_config_rw_RGB565_15fps_n);
+  xil_printf("Config camera mode\n\r");
+  OV9655_Config_rw(&IIc, cam_config_rw_RGB565_15fps, cam_config_rw_RGB565_15fps_n);
+  //OV9655_Config_rw(&IIc, cam_config_rw_pclk, cam_config_rw_pclk_n);
+  xil_printf("Config camera mode OK\n\r");
+  while(1);
+
+  OV9655_CameraConfigInteractive(&IIc);
+
+  //////////////////////////////////////////////////////////////
+
+  xil_printf("Config ok\n\r");
+  while(1);
+}

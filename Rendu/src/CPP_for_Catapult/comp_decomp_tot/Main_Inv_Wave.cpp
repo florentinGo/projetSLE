@@ -1,0 +1,166 @@
+//
+// Created by florentin on 27/01/17.
+//
+
+#include "Main_Inv_Wave.h"
+/* Fonction qui réalise la décompression de l'image transformée en ondelettes
+écrite dans la mémoire Src.
+Le niveau de compression subi par l'image réalisé est renseigné par nbLevels.
+Le niveau de décompression souhaité est renseigné par quality.
+L'image finale est écrite dans la mémoire Dst.
+*/
+
+void Main_Inv_Wave::Mn_Inv_Wave_Fct(
+	ac_int<8, false> Src[HEIGHT_IMAGE * WIDTH_IMAGE],
+	ac_int<8, false> Dst[HEIGHT_IMAGE * WIDTH_IMAGE], int nbLevels, int quality)
+{
+
+  int i, hi, wi, himpairs, wimpairs;
+
+  himpairs = 0;
+  wimpairs = 0;
+  hi = HEIGHT_IMAGE;
+  wi = WIDTH_IMAGE;
+
+  for (i = 0; i < nbLevels; i++) {
+	if (hi > 1 && wi > 1) {
+	  if (hi & 0x1)
+		himpairs++;
+	  hi = hi / 2;
+
+	  if (wi & 0x1)
+		wimpairs++;
+	  wi = wi / 2;
+	} else
+	  nbLevels = i;
+  }
+
+  for (i = 0; i < (nbLevels - quality); i++) {
+
+	hi = hi * 2;
+	wi = wi * 2;
+
+	if (himpairs > 0)
+	  hi++;
+	if (wimpairs > 0)
+	  wi++;
+
+	himpairs--;
+	wimpairs--;
+
+
+
+	Inv_Wave(Src, Dst, hi, wi);
+	i++;
+
+	if (i != (nbLevels - quality)) {
+
+	  hi = hi * 2;
+	  wi = wi * 2;
+
+	  if (himpairs > 0)
+		hi++;
+	  if (wimpairs > 0)
+		wi++;
+
+	  himpairs--;
+	  wimpairs--;
+
+	  Inv_Wave(Dst, Src, hi, wi);
+	  Main_Inv_Wave::image_copy(Src, Dst, hi, wi);
+	}
+  }
+  for (i = quality; i >= 1; i--) {
+	if ((nbLevels - i) & 0x1) {
+	  image_agrandir(Dst, Src, hi, wi);
+	  hi = hi * 2;
+	  wi = wi * 2;
+	  Main_Inv_Wave::image_copy(Src, Dst, hi, wi);
+	} else {
+	  image_agrandir(Src, Dst, hi, wi);
+	  hi = hi * 2;
+	  wi = wi * 2;
+	  Main_Inv_Wave::image_copy(Dst, Src, hi, wi);
+	}
+  }
+}
+
+/* Fonction qui réalise un niveau de la décompression.
+La taille de l'image à traiter est défninie par hi(hauteur) et wi(largeur)
+L'image finale est écrite dans la mémoire Dst.
+*/
+void Main_Inv_Wave::Inv_Wave(ac_int<8, false> Src[HEIGHT_IMAGE * WIDTH_IMAGE],
+							   ac_int<8, false> Dst[HEIGHT_IMAGE * WIDTH_IMAGE],
+							   int hi, int wi)
+{
+
+  ac_int<9, false> x;
+  ac_int<8, false> y;
+  ac_int<17, false> as1, as2, as3, as4;
+  ac_int<17, false> ad1, ad2, ad3, ad4;
+
+  hsplit_x:
+  for (y = 0; y < (hi) / 2; y++) {
+	hsplit_y:
+	for (x = 0; x < (wi) / 2; x++) {
+
+	  // @ pixels source
+	  as1 = (WIDTH_IMAGE * y) + x;                     // LxLy
+	  as2 = (WIDTH_IMAGE * y) + x + wi / 2;            // LxHy
+	  as3 = (WIDTH_IMAGE * (y + hi / 2)) + x;          // HxLy
+	  as4 = (WIDTH_IMAGE * (y + hi / 2)) + x + wi / 2; // HxHy
+
+	  // @ des pixels destination à traiter pour cette itération
+	  ad1 = (WIDTH_IMAGE * (2 * y)) + 2 * x;         // 2x  , 2y
+	  ad2 = (WIDTH_IMAGE * (2 * y)) + 2 * x + 1;     // 2x+1, 2y
+	  ad3 = (WIDTH_IMAGE * (2 * y + 1)) + 2 * x;     // 2x  , 2y+1
+	  ad4 = (WIDTH_IMAGE * (2 * y + 1)) + 2 * x + 1; // 2x+1, 2y+1
+
+	  // Calcul des pixels destination
+	  Dst[ad1] = Src[as1] + Src[as2] + (Src[as3] + Src[as4]);
+	  Dst[ad2] = Src[as1] + Src[as2] - (Src[as3] + Src[as4]);
+	  Dst[ad3] = Src[as1] - Src[as2] + (Src[as3] - Src[as4]);
+	  Dst[ad4] = Src[as1] - Src[as2] - (Src[as3] - Src[as4]);
+
+	}
+  }
+}
+
+/* Fonction agrandissant l'image Src en doublant sa hauteur (hi) et sa largeur
+* (wi)
+*/
+void Main_Inv_Wave::image_agrandir(
+	ac_int<8, false> Src[HEIGHT_IMAGE * WIDTH_IMAGE],
+	ac_int<8, false> Dst[HEIGHT_IMAGE * WIDTH_IMAGE], int hi, int wi)
+{
+
+  int x, y;
+
+  agrandir_x:
+  for (y = 0; y < hi; y++) {
+	agrandir_y:
+	for (x = 0; x < wi; x++) {
+	  Dst[WIDTH_IMAGE * 2 * y + 2 * x] =
+		  Src[WIDTH_IMAGE * y + x]; // 2x  , 2y
+	  Dst[WIDTH_IMAGE * 2 * y + (2 * x + 1)] =
+		  Src[WIDTH_IMAGE * y + x]; // 2x+1  , 2y
+	  Dst[WIDTH_IMAGE * (2 * y + 1) + 2 * x] =
+		  Src[WIDTH_IMAGE * y + x]; // 2x  , 2y+1
+	  Dst[WIDTH_IMAGE * (2 * y + 1) + (2 * x + 1)] =
+		  Src[WIDTH_IMAGE * y + x]; // 2x+1  , 2y+1
+	}
+  }
+}
+
+void Main_Inv_Wave::image_copy(ac_int<8, false> Src[HEIGHT_IMAGE*WIDTH_IMAGE], ac_int<8, false> Dst[HEIGHT_IMAGE*WIDTH_IMAGE], int hi, int wi) {
+
+  int x, y;
+
+  copy_x : for (y = 0; y < (hi); y++) {
+  copy_y : for (x = 0; x < (wi); x++) {
+  Dst[WIDTH_IMAGE*y + x] = Src[WIDTH_IMAGE*y + x];
+}
+}
+}
+
+

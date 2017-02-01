@@ -1,0 +1,380 @@
+-------------------------------------------------------------------------------
+-- system_top.vhd
+-------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+
+library work;
+use work.packageVGA.all;
+
+entity system_top is
+  Port ( processing_system7_0_MIO : inout std_logic_vector(53 downto 0);
+		processing_system7_0_PS_SRSTB : in std_logic;
+		processing_system7_0_PS_CLK : in std_logic;
+		processing_system7_0_PS_PORB : in std_logic;
+		processing_system7_0_DDR_Clk : inout std_logic;
+		processing_system7_0_DDR_Clk_n : inout std_logic;
+		processing_system7_0_DDR_CKE : inout std_logic;
+		processing_system7_0_DDR_CS_n : inout std_logic;
+		processing_system7_0_DDR_RAS_n : inout std_logic;
+		processing_system7_0_DDR_CAS_n : inout std_logic;
+		processing_system7_0_DDR_WEB : out std_logic;
+		processing_system7_0_DDR_BankAddr : inout std_logic_vector(2 downto 0);
+		processing_system7_0_DDR_Addr : inout std_logic_vector(14 downto 0);
+		processing_system7_0_DDR_ODT : inout std_logic;
+		processing_system7_0_DDR_DRSTB : inout std_logic;
+		processing_system7_0_DDR_DQ : inout std_logic_vector(31 downto 0);
+		processing_system7_0_DDR_DM : inout std_logic_vector(3 downto 0);
+		processing_system7_0_DDR_DQS : inout std_logic_vector(3 downto 0);
+		processing_system7_0_DDR_DQS_n : inout std_logic_vector(3 downto 0);
+		processing_system7_0_DDR_VRN : inout std_logic;
+		processing_system7_0_DDR_VRP : inout std_logic;
+		processing_system7_0_I2C0_SDA : inout std_logic;
+		processing_system7_0_I2C0_SCL : inout std_logic;
+		led_io : inout std_logic_vector(3 downto 0);
+		push_io : in std_logic_vector(3 downto 0);
+		switch_io : in std_logic_vector(3 downto 0);
+		clk : in std_logic;
+		RED : out std_logic_vector(4 downto 0);
+  		GREEN : out std_logic_vector(5 downto 0);
+  		BLUE : out std_logic_vector(4 downto 0);
+		VGA_VS : out std_logic;
+		VGA_HS : out std_logic;
+		CAMERA_DATA : in std_logic_vector(7 downto 0);
+    	--CAMERA_PWREN : out std_logic;
+		--CAMERA_RST : out std_logic;
+		--CAMERA_SCL : inout std_logic;
+		--CAMERA_SDA : inout std_logic;		
+		CAMERA_XCLK : out std_logic;
+		CAMERA_PCLK : in std_logic;
+		CAMERA_HS : in std_logic;
+		CAMERA_VS : in std_logic
+  );
+end system_top;
+
+architecture STRUCTURE of system_top is
+
+component system is
+	 Port ( processing_system7_0_MIO : inout std_logic_vector(53 downto 0);
+			 processing_system7_0_PS_SRSTB : in std_logic;
+			 processing_system7_0_PS_CLK : in std_logic;
+			 processing_system7_0_PS_PORB : in std_logic;
+			 processing_system7_0_DDR_Clk : inout std_logic;
+			 processing_system7_0_DDR_Clk_n : inout std_logic;
+			 processing_system7_0_DDR_CKE : inout std_logic;
+			 processing_system7_0_DDR_CS_n : inout std_logic;
+			 processing_system7_0_DDR_RAS_n : inout std_logic;
+			 processing_system7_0_DDR_CAS_n : inout std_logic;
+			 processing_system7_0_DDR_WEB : out std_logic;
+			 processing_system7_0_DDR_BankAddr : inout std_logic_vector(2 downto 0);
+			 processing_system7_0_DDR_Addr : inout std_logic_vector(14 downto 0);
+			 processing_system7_0_DDR_ODT : inout std_logic;
+			 processing_system7_0_DDR_DRSTB : inout std_logic;
+			 processing_system7_0_DDR_DQ : inout std_logic_vector(31 downto 0);
+			 processing_system7_0_DDR_DM : inout std_logic_vector(3 downto 0);
+			 processing_system7_0_DDR_DQS : inout std_logic_vector(3 downto 0);
+			 processing_system7_0_DDR_DQS_n : inout std_logic_vector(3 downto 0);
+			 processing_system7_0_DDR_VRN : inout std_logic;
+			 processing_system7_0_DDR_VRP : inout std_logic;
+			 processing_system7_0_I2C0_SDA : inout std_logic;
+			 processing_system7_0_I2C0_SCL : inout std_logic);
+end component system;
+
+ attribute BOX_TYPE : STRING;
+ attribute BOX_TYPE of system : component is "user_black_box";
+ 
+ signal		CAMERA_DATA_q : std_logic_vector(7 downto 0);
+ signal		CAMERA_HS_q :  std_logic;
+ signal		CAMERA_VS_q :std_logic;
+
+component clk_pll
+	 Port ( CLK_IN1 : in STD_LOGIC;
+			CLK_OUT1 : out STD_LOGIC;
+			CLK_OUT2 : out STD_LOGIC;
+			RESET : in STD_LOGIC;
+			LOCKED : out STD_LOGIC);
+end component clk_pll;
+
+--component Camera_Data_Simu
+--    Port ( pclk : in STD_LOGIC;
+--			  href : out STD_LOGIC;
+--         vs : out STD_LOGIC;
+--         data_out : out STD_LOGIC_VECTOR (7 downto 0));
+--end component Camera_Data_Simu;
+
+component VGA_generator
+    Port ( clk : in STD_LOGIC;
+    		btn3 : in STD_LOGIC;								
+			Hsync : out STD_LOGIC;
+			Vsync : out STD_LOGIC;
+			addr : out STD_LOGIC_VECTOR (16 downto 0);
+			coord : out coordonnee;
+			activeArea : out boolean;
+			reset : out STD_LOGIC);
+end component VGA_generator;
+
+component Camera_Capture
+    Port ( pclk : in STD_LOGIC;
+    	   reset : in STD_LOGIC;
+         href : in STD_LOGIC;
+			vs_cam : in STD_LOGIC;
+			data_in : in STD_LOGIC_VECTOR (7 downto 0);
+			addr : out STD_LOGIC_VECTOR (16 downto 0);
+			data_out : out STD_LOGIC_VECTOR (15 downto 0);
+			coord : out coordonnee;
+			we : out STD_LOGIC_VECTOR(0 DOWNTO 0);
+			writting : out STD_LOGIC_VECTOR(0 DOWNTO 0));
+end component Camera_Capture;
+
+component mem_lum_opt
+	 Port ( clka : in STD_LOGIC;
+		wea : in STD_LOGIC_VECTOR(0 DOWNTO 0);
+    		addra : in STD_LOGIC_VECTOR(16 DOWNTO 0);
+    		dina : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+    		clkb : in STD_LOGIC;
+   		addrb : in STD_LOGIC_VECTOR(16 DOWNTO 0);
+   		doutb : out STD_LOGIC_VECTOR(7 DOWNTO 0));
+end component mem_lum_opt;
+
+component multiplexer_RGB is
+    Port ( clk : in STD_LOGIC;
+    		sw0 : in STD_LOGIC;	
+			btn0 : in STD_LOGIC;					
+			btn1 : in STD_LOGIC;
+			btn2 : in STD_LOGIC;
+			coord : in coordonnee;
+			data  : in STD_LOGIC_VECTOR (15 downto 0);
+			activeArea : in boolean;
+			Hsync : in STD_LOGIC;
+			Vsync : in STD_LOGIC;
+			VGA_hs : out STD_LOGIC;
+			VGA_vs : out STD_LOGIC;
+			VGA_r : out STD_LOGIC_VECTOR (4 downto 0);
+			VGA_g : out STD_LOGIC_VECTOR (5 downto 0);
+			VGA_b : out STD_LOGIC_VECTOR (4 downto 0));
+end component multiplexer_RGB;
+
+component Main_Trans_Ond_Opt is
+	Port ( 
+    start : IN STD_LOGIC;
+    done : OUT STD_LOGIC;
+    nbLevels_rsc_z : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+    nbLevels_triosy_lz : OUT STD_LOGIC;
+    Src_triosy_lz : OUT STD_LOGIC;
+    Dst_triosy_lz : OUT STD_LOGIC;
+    Vga_triosy_lz : OUT STD_LOGIC;
+    clk : IN STD_LOGIC;
+    rst : IN STD_LOGIC;
+    Src_rsc_singleport_data_in : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+    Src_rsc_singleport_addr : OUT STD_LOGIC_VECTOR (16 DOWNTO 0);
+    Src_rsc_singleport_re : OUT STD_LOGIC;
+    Src_rsc_singleport_we : OUT STD_LOGIC;
+    Src_rsc_singleport_data_out : IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+    Dst_rsc_singleport_data_in : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+    Dst_rsc_singleport_addr : OUT STD_LOGIC_VECTOR (16 DOWNTO 0);
+    Dst_rsc_singleport_re : OUT STD_LOGIC;
+    Dst_rsc_singleport_we : OUT STD_LOGIC;
+    Dst_rsc_singleport_data_out : IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+    Vga_rsc_singleport_data_in : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+    Vga_rsc_singleport_addr : OUT STD_LOGIC_VECTOR (16 DOWNTO 0);
+    Vga_rsc_singleport_re : OUT STD_LOGIC;
+    Vga_rsc_singleport_we : OUT STD_LOGIC;
+    Vga_rsc_singleport_data_out : IN STD_LOGIC_VECTOR (7 DOWNTO 0)
+  );
+end component Main_Trans_Ond_Opt;
+
+--Ajout Ram_init
+component ram_init is
+  PORT (
+	clka : IN STD_LOGIC;
+	ena : IN STD_LOGIC;  
+	wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    	addra : IN STD_LOGIC_VECTOR(16 DOWNTO 0);
+    	dina : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    	clkb : IN STD_LOGIC;
+    	enb : IN STD_LOGIC;  
+  	addrb : IN STD_LOGIC_VECTOR(16 DOWNTO 0);
+    	doutb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+  );
+end component ram_init;
+
+signal clk_VGA, pclk_cam : STD_LOGIC; 
+signal we : STD_LOGIC_VECTOR(0 DOWNTO 0);
+signal address_cam, address_VGA : STD_LOGIC_VECTOR (16 downto 0);
+signal data_cam : STD_LOGIC_VECTOR (15 downto 0);
+signal data_VGA : STD_LOGIC_VECTOR (15 downto 0);
+signal coord_VGA, coord_cam : coordonnee;
+signal img_active : boolean;
+signal hs, vs : STD_LOGIC; 
+signal rst_VGA : STD_LOGIC; 
+--signal CAMERA_DATA : STD_LOGIC_VECTOR (7 downto 0);
+--signal CAMERA_HS, CAMERA_VS : STD_LOGIC;
+
+-- Signals linked to RAMs
+signal addra_1 : STD_LOGIC_VECTOR (16 downto 0);
+signal dina_1, dina_2, dina_3, doutb_1, doutb_2, doutb_3 : STD_LOGIC_VECTOR (7 downto 0);
+signal we_1, we_2, we_3 : STD_LOGIC_VECTOR (0 downto 0);
+
+-- Signals linked to CatapultC module
+signal start_signal, done_signal : STD_LOGIC;
+signal not_we_1, not_we_2, not_we_3 : STD_LOGIC;
+signal dina_1_catC : STD_LOGIC_VECTOR (7 downto 0);
+signal addr_1_catC, addr_2_catC, addr_3_catC : STD_LOGIC_VECTOR (16 downto 0);
+
+-- Added for iteration
+signal cam_writting : STD_LOGIC_VECTOR(0 downto 0);
+--type FSM_with_cam is (WaitingForFrame, ReadingFrame, Treating, Synchronizing);
+type FSM_without_cam is (WaitingWC, TreatingWC);
+--signal etat_cam_q, etat_cam_d : FSM_with_cam;
+signal etat_q, etat_d : FSM_without_cam;
+
+-- Added for control of saturation
+signal saturate_sig : STD_LOGIC;
+
+-- Added for control of the level of compression
+signal nbLev_sig_q, nbLev_sig_d : STD_LOGIC_VECTOR (2 DOWNTO 0);
+signal pushed_q, pushed_d : BOOLEAN;
+type FSM_compression is (rst, switch_1, switch_2, switch_3);
+signal etat_comp_q, etat_comp_d : FSM_compression;
+
+-- Added control signals for count
+signal cpt_start : STD_LOGIC;
+signal compteur : STD_LOGIC_VECTOR (11 DOWNTO 0); --on compte jusqu'à 1024 = 2*10
+
+begin
+
+	-- The 'write enable' signals generated by CatapultC work with a reversed logic
+	-- compared to Xilinx memories. So we reverse the signals that are sent to the memories.
+	we_2(0) <= not not_we_2;
+
+	-- Linking ram3 with the VGA handling module signals
+	data_VGA <= saturate(doutb_3, saturate_sig);
+
+	-- We control whether we saturate the final picture or not with a switch
+	saturate_sig <= switch_io(3);
+	
+	-- This process is used to freeze the picture while observing the screen
+	freeze: process(switch_io, not_we_3)
+	begin
+		if switch_io(2) = '1'
+		then
+			we_3(0) <= not not_we_3;
+		else
+			we_3 <= "0";
+		end if;
+	end process;
+	
+	-- We use some Leds to check the current level of compression right on the zybo card
+	print_nbLev: process(nbLev_sig_q)
+	begin
+		led_io(1) <= nbLev_sig_q(0);
+		led_io(2) <= nbLev_sig_q(1);
+		led_io(3) <= nbLev_sig_q(2);
+	end process;
+	
+	-- Compteur
+	compteur: process(clk_VGA)
+	begin
+		if clk_VGA'event and clk_VGA = '1' then
+			if cpt_start = '1' then
+				if compteur >= 1024 then 
+					compteur <= "0";
+					cpt_start <= '0';
+				else
+					compteur <= compteur + 1;
+				end if;
+			end if;
+		end if;
+	end process;
+
+	-- fsm for level of compression
+	sync_nbLev: process(clk_VGA)
+	begin
+		if clk_VGA'event and clk_VGA = '1' then
+			if rst_VGA = '1' then
+				etat_comp_q <= rst;
+				nbLev_sig_q <= "000";
+				
+			else
+				etat_comp_q <= etat_comp_d;
+				nbLev_sig_q <= nbLev_sig_d;		
+			end if;
+		end if;
+	end process;
+	
+	comb_nbLev: process(etat_comp_q, nbLev_sig_q, switch_io, push_io)	
+
+	begin
+		--Default
+		nbLev_sig_d <= nbLev_sig_q;
+		etat_comp_d <= etat_comp_q;
+
+		case etat_comp_q is
+			when rst =>
+
+				nbLev_sig_d <= "000";
+
+				if push_io(0) = '1' then
+					etat_comp_d <= switch_1;
+				end if;
+
+			when switch_1 =>
+
+				if push_io(0) = '0' then
+					etat_comp_d <= switch_2;
+				end if;
+
+			when switch_2 =>
+
+				nbLev_sig_d <= nbLev_sig_q + 1;
+			
+				--On lance le compteur 				
+				cpt_start <= '1';				
+
+				if nbLev_sig_q = 7 then
+					etat_comp_d <= rst;
+				else
+					etat_comp_d <= switch_2;
+				end if;
+				
+				etat_comp_d <= switch_3;
+
+			when switch_3 =>
+					
+				if push_io(0) = '1' then
+					etat_comp_d <= switch_1;
+				end if;
+
+		end case;	
+	end process;
+	--
+	-- We use the buttons of the zybo card to change the level of compression
+	--sync_nbLev: process(switch_io, push_io, rst_VGA, pushed)
+	--begin
+	--	if rst_VGA = '1' then
+	--		nbLev_sig <= "000";
+	--		pushed <= false;
+	--	elsif switch_io(1) = '0' then
+	--		nbLev_sig <= "001";
+	--		pushed <= false;
+	--	elsif push_io(0) = '1' and pushed = false then
+	--		nbLev_sig <= nbLev_sig + 1;
+	--		pushed <= true;
+	--	elsif push_io(0) = '1' and pushed = true then
+	--		nbLev_sig <= nbLev_sig;
+	--		pushed <= true;
+	--	elsif push_io(0) = '0' then
+	--		nbLev_sig <= nbLev_sig;
+	--		pushed <= false;
+	--	end if;
+	--end process;
+
+
+	sync_fsm: process(clk_VGA)
+	begin
+		if clk_VGA'event and clk_VGA = '1' then
+		

@@ -1,0 +1,132 @@
+#include "Main_Comp_Decomp_tot.h"
+#include <fstream>
+#include <mc_scverify.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+using namespace std;
+
+CCS_MAIN(int argc, char *argv[])
+{
+
+
+  // argv[1] : Nombre de niveaux de décompression
+  // argv[2] : Qualité de l'image décompressée (0 est la meilleure qualité
+  // possible, argv[1] la pire)
+  // argv[3] : Nom de l'image Destination de la décompression
+  // argv[4] : Nom de l'image Destination de la compression
+
+  ac_int<8,false> image[WIDTH_IMAGE*HEIGHT_IMAGE]; // image a compresser
+  ac_int<8,false> compressed_img[WIDTH_IMAGE*HEIGHT_IMAGE]; // image compressé
+  ac_int<8,false> expanded_img[WIDTH_IMAGE*HEIGHT_IMAGE];// decompressé en ondelette
+  ac_int<8, false> returned_img[WIDTH_IMAGE*HEIGHT_IMAGE];
+  ac_int<4, false> nb_lvl = 0;
+  Main_Comp_Decomp_NoW comp_decomp_noW;
+  unsigned int i;
+  unsigned int j;
+  int useless;
+  std::string dumb_string;
+
+  if (argc != 3) {
+	cout << "ERREUR: ";
+	cout << "Il faut 2 arguments : " << endl
+		 << "	Nombre de niveaux de décompression" << endl
+		 << "	Qualité de l'image décompressée (0 est la meilleure "
+			 "qualité "
+			 "possible, argv[1] la pire)"
+		 << endl;
+	return 0;
+  }
+
+  /****************** START OF COMPRESSION *************************/
+
+  std::ifstream fichier("image/lena2.pgm", std::ios::in);
+
+  // ecriture du fichier de test
+  if (!fichier) {
+	std::cout << "ça ne lit pas le fichier" << std::endl;
+	CCS_RETURN(1);
+  }
+  getline(fichier, dumb_string);
+  fichier >> useless >> useless >> useless;
+
+#ifdef DEBUG
+  std::cout << " img " << dumb_string << useless << std::endl;
+#endif
+  for (i = 0; i < HEIGHT_IMAGE; i++) {
+	for (j = 0; j < WIDTH_IMAGE; j++) {
+	  fichier >> useless;
+	  image[i * WIDTH_IMAGE + j] = useless;
+	}
+  }
+  fichier.close();
+
+#ifdef DEBUG
+  std::cout << "TB_JPEG2000 : Fichier Source OK" << std::endl;
+#endif
+
+  nb_lvl = atoi(argv[1]);
+  // appel du programme principal
+  CCS_DESIGN(comp_decomp_noW.Main_Fonction)(image,compressed_img,expanded_img,returned_img,nb_lvl);
+ // CCS_DESIGN(trans_ond.Mn_Trans_Ond)(image,wavelet,nb_lvl);
+// ecriture du resultat
+#ifdef DEBUG
+  std::cout << "TB_JPEG2000 : Main_Trans_Ond OK" << std::endl;
+#endif
+  std::ofstream fichier_compressed("compressed_img.pgm", std::ios::out);
+  if (!fichier_compressed) {
+	std::cerr << "ça n'ecrit pas le fichier" << std::endl;
+	CCS_RETURN(1);
+  }
+  fichier_compressed << "P2" << std::endl
+			  << WIDTH_IMAGE << " " << HEIGHT_IMAGE << std::endl
+			  << "255" << std::endl;
+  for (i = 0; i < HEIGHT_IMAGE; i++) {
+	for (j = 0; j < WIDTH_IMAGE; j++) {
+	  fichier_compressed << compressed_img[i * WIDTH_IMAGE + j] << " ";
+	}
+  }
+  fichier_compressed << std::endl;
+  fichier_compressed.close();
+
+
+
+  std::ofstream fichier_expanded("expanded.pgm", std::ios::out);
+  if (!fichier_expanded) {
+	std::cerr << "ça n'ecrit pas le fichier" << std::endl;
+	CCS_RETURN(1);
+  }
+  fichier_expanded << "P2" << std::endl
+			  << WIDTH_IMAGE << " " << HEIGHT_IMAGE << std::endl
+			  << "255" << std::endl;
+  for (int i = 0; i< WIDTH_IMAGE *HEIGHT_IMAGE; i++) {
+	  fichier_expanded << expanded_img[i] << " ";
+
+  }
+  fichier_expanded << std::endl;
+  fichier_expanded.close();
+
+
+
+  std::ofstream fichier_returned("returned_img.pgm", std::ios::binary | std::ios::out);
+  if (!fichier_returned) {
+	std::cerr << "ça n'ecrit pas le fichier" << std::endl;
+	CCS_RETURN(1);
+  }
+
+  fichier_returned << "P2" << std::endl
+				<< WIDTH_IMAGE << " " << HEIGHT_IMAGE << std::endl
+				<< "255" << std::endl;
+  for (i = 0; i < WIDTH_IMAGE*HEIGHT_IMAGE; i++) {
+	fichier_returned << returned_img[i] << " ";
+  }
+  fichier_returned << std::endl;
+  fichier_returned.close();
+
+
+
+  std::cout << "fin du programme \n";
+  CCS_RETURN(0);
+}
+
+

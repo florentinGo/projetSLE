@@ -1,0 +1,22 @@
+//
+// Created by florentin on 26/01/17.
+//
+
+#ifndef PROJET_IMPLEMENTATION_SLE_GLOBALS_H
+#define PROJET_IMPLEMENTATION_SLE_GLOBALS_H
+#define WIDTH_IMAGE 320
+#define HEIGHT_IMAGE 240
+
+#define CODE_VALUE uint32
+#define CODE_VALUE_BITS_ 16
+#define FREQUENCY_BITS_ 14
+#define PRECISION  31
+#define CODE_VALUE_BITS  16
+#define FREQUENCY_BITS  14
+#define MAX_CODE  0xffff
+#define MAX_FREQ  0x3fff
+#define ONE_FOURTH  0x4000
+#define ONE_HALF  0x8000
+#define THREE_FOURTHS  0xc000
+
+#endif //PROJET_IMPLEMENTATION_SLE_GLOBALS_H

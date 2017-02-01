@@ -1,0 +1,31 @@
+ROR:NgdBuild:770 - IBUFG 'IBUFG' and BUFG 'BUFG' on net 'CAMERA_PCLK_BUFGP'
+are lined up in series. Buffers of the same direction cannot be placed in
+series.
+ERROR:NgdBuild:924 - input pad net 'CAMERA_PCLK_BUFGP' is driving non-buffer
+primitives:
+ERROR:NgdBuild:455 - logical net 'data_ond_in<7>' has multiple driver(s):
+	ERROR:NgdBuild:924 - input pad net 'data_ond_in<7>' is driving non-buffer
+	primitives:
+ERROR:NgdBuild:455 - logical net 'data_ond_in<6>' has multiple driver(s):
+	ERROR:NgdBuild:924 - input pad net 'data_ond_in<6>' is driving non-buffer
+	primitives:
+ERROR:NgdBuild:455 - logical net 'data_ond_in<5>' has multiple driver(s):
+	ERROR:NgdBuild:924 - input pad net 'data_ond_in<5>' is driving non-buffer
+	primitives:
+ERROR:NgdBuild:455 - logical net 'data_ond_in<4>' has multiple driver(s):
+	ERROR:NgdBuild:924 - input pad net 'data_ond_in<4>' is driving non-buffer
+	primitives:
+ERROR:NgdBuild:455 - logical net 'data_ond_in<3>' has multiple driver(s):
+	ERROR:NgdBuild:924 - input pad net 'data_ond_in<3>' is driving non-buffer
+	primitives:
+ERROR:NgdBuild:455 - logical net 'data_ond_in<2>' has multiple driver(s):
+	ERROR:NgdBuild:924 - input pad net 'data_ond_in<2>' is driving non-buffer
+	primitives:
+ERROR:NgdBuild:455 - logical net 'data_ond_in<1>' has multiple driver(s):
+	ERROR:NgdBuild:924 - input pad net 'data_ond_in<1>' is driving non-buffer
+	primitives:
+ERROR:NgdBuild:455 - logical net 'data_ond_in<0>' has multiple driver(s):
+	ERROR:NgdBuild:924 - input pad net 'data_ond_in<0>' is driving non-buffer
+	primitives:
+ERROR:NgdBuild:455 - logical net 'vga/reset' has multiple driver(s):
+	ERROR:NgdBuild:924 - input pad net 'vga/reset' is driving non-buffer primitives:

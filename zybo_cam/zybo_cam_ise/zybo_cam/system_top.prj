@@ -1,0 +1,8 @@
+vhdl work "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_simple/hdl/system.vhd"
+vhdl work "../../vhd/packageVGA.vhd"
+vhdl work "../../vhd/VGA_generator.vhd"
+vhdl work "../../vhd/multiplexer_RGB.vhd"
+vhdl work "../../vhd/coregen/mem_lum_opt.vhd"
+vhdl work "../../vhd/clk_pll.vhd"
+vhdl work "../../vhd/camera_capture.vhd"
+vhdl work "../../vhd/system_top.vhd"

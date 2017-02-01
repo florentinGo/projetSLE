@@ -1,0 +1,234 @@
+/************************************************************************/
+/*																		*/
+/*	main.c	--	ZYBO_CAMERA						*/
+/*																		*/
+/************************************************************************/
+
+/* ------------------------------------------------------------ */
+/*				Include File Definitions						*/
+/* ------------------------------------------------------------ */
+
+
+#include "OV9655_camera.h"
+
+/* ------------------------------------------------------------ */
+/*				Global Variables								*/
+/* ------------------------------------------------------------ */
+
+/*
+ * XPAR redefines
+ */
+
+#define IIC_SCLK_RATE		100000
+
+cam_reg_rw cam_config_rw_RGB565_15fps[]={
+  {OV9655_COM7,  0b00001100, FORMAT_CTRL_15fpsVGA | OUTPUT_FORMAT_RGB}, // Mode RGB 15fps
+  {OV9655_COM15, 0b00001111, RGB_565_OUT_FULL},                         // RGB 565 et output full range
+  {OV9655_COM9,  0b10001111, GAIN_4x},                                  // Configuration Gain
+  {OV9655_REG16, 0b11001111, 0b00000000}                                // Pas de dummy frame gain > 8x ??
+};
+int cam_config_rw_RGB565_15fps_n=sizeof(cam_config_rw_RGB565_15fps)/sizeof(cam_reg_rw);
+
+cam_reg cam_config_640_480[]={
+  {OV9655_HREF, 0xBF},   // Href LSB 10 111 111
+  {OV9655_HSTART, 0x1D}, // Hstart = 239= 0001 1101 [111]
+  {OV9655_HSTOP, 0x6D},  // Hstop =  879= 0110 1101 [111]  -> 640
+  {OV9655_VREF, 0x12},   // Vref LSB 00 010 010
+  {OV9655_VSTART, 0x01}, // Vstart = 10 = 0000 0001 [010]
+  {OV9655_VSTOP, 0x3D},  // Vstop = 490 = 0011 1101 [010] -> 480
+  {OV9655_MVFP, 0x10},   // Vertical flip
+   };
+int cam_config_640_480_n=sizeof(cam_config_640_480)/sizeof(cam_reg);
+
+cam_reg cam_config_128_128[]={
+  {OV9655_HREF, 0x40},   // Href LSB 10 000 000
+  {OV9655_HSTART, 0x38}, // Hstart = 448 = 0001 100 [000]
+  {OV9655_HSTOP, 0x48},  // Hstop  = 576 = 0011 100 [000] -> 128
+
+  {OV9655_VREF, 0x12},   // Vref LSB  00 010 010
+  {OV9655_VSTART, 0x1A}, // Vstart = 194 = 0001 1000 [010]
+  {OV9655_VSTOP, 0x2A},  // Vstop = 322  = 0010 1000 [010] -> 128
+  {OV9655_MVFP, 0x10},   // Vertical flip
+ };
+
+
+int cam_config_128_128_n=sizeof(cam_config_128_128)/sizeof(cam_reg);
+
+/* ------------------------------------------------------------ */
+/*				Procedure Definitions							*/
+/* ------------------------------------------------------------ */
+
+int OV9655_CameraConfigInteractive(XIicPs *IIc)
+{
+  u8 ReadValue = 0;
+  char userInput[256] ;
+  char YesNo[2];
+  int addrReg, valReg;
+
+  xil_printf("\x1B[2J"); // Clear terminal
+  xil_printf("\x1B[H");  // Set cursor to top left of terminal
+  xil_printf("\x1B[2J"); // Clear terminal
+  xil_printf("**************************************************\n\r");
+  xil_printf("**************************************************\n\r");
+  xil_printf("*         Configuration camera OV9655            *\n\r");
+  xil_printf("**************************************************\n\r");
+  xil_printf("**************************************************\n\r");
+  xil_printf("\n\r");
+
+ 
+  do	
+    {
+      xil_printf("w - Modifier registre\n\r");
+      xil_printf("r - Lire registre\n\r");
+      xil_printf("q - Quitter\n\r");
+      xil_printf("\n\r");
+      xil_printf("Selectionnez votre action:\n\r");
+      scanf("%s", userInput);
+      switch (userInput[0])
+        {
+        case 'w':
+          xil_printf("Entrez l'addresse du registre a modifier\n\r");
+          scanf("%x", &addrReg);
+          xil_printf("Entrez la nouvelle valeur du registre\r\n");
+          scanf("%x", &valReg);
+          xil_printf("Confirmation valeur 0x%2x du registre d'addresse 0x%2x ? (y/n)\r\n", valReg, addrReg);
+          scanf("%2s", YesNo);
+          if (YesNo[0] == 'y')
+            {
+              OV9655_WriteRegister(IIc, addrReg, valReg);
+              xil_printf("Registre modifie\r\n");
+            }
+          else
+            {
+              xil_printf("Abandon\r\n");
+            }
+          break;
+
+        case 'r':
+          xil_printf("Entrez l'addresse du registre a lire\n\r");
+          scanf("%x", &addrReg);
+          ReadValue = OV9655_ReadRegister(IIc, addrReg);
+          xil_printf("Valeur lue 0x%2x du registre d'adresse 0x%2x\n\r", ReadValue, addrReg);
+          break;
+        case 'q':
+          break;
+        default :
+          xil_printf("Selectionnez votre action\n\r");
+        }
+    }
+  while (userInput[0] != 'q');
+
+  xil_printf("END_CONFIGURATION_CAMERA\n\r");
+
+  return 0;
+}
+
+
+void OV9655_InitI2C(XIicPs *IIc, int DeviceId )
+{
+  XIicPs_Config *Config;
+  int Status;
+
+  xil_printf("INIT_I2C\n\r");
+  Config = XIicPs_LookupConfig(DeviceId);
+  if (NULL == Config){
+    xil_printf("LOOKUP_FAIL_I2C\n\r");
+  }
+
+  Status = XIicPs_CfgInitialize(IIc, Config, Config->BaseAddress); 
+  if (Status != XST_SUCCESS){
+    xil_printf("INIT_INSTANCE_FAIL_I2C\n\r");
+  }
+
+  Status = XIicPs_SelfTest(IIc);
+  if (Status != XST_SUCCESS){
+    xil_printf("SELF_TEST_FAIL_I2C\n\r");
+  }
+  xil_printf("Set 7bit\n\r");
+
+  Status = XIicPs_SetOptions(IIc, XIICPS_7_BIT_ADDR_OPTION);
+  if (Status != XST_SUCCESS){
+    xil_printf("SET_OPTION_FAIL_I2C\n\r");
+  }
+
+  XIicPs_SetSClk(IIc, IIC_SCLK_RATE); /* 100kHz */
+
+}
+
+void OV9655_WriteRegister(XIicPs *IIc, u8 RegAddr, u8 RegisterValue)
+{
+  int Status;
+  u8 SendBuffer[2];
+
+  SendBuffer[0] = RegAddr;
+  SendBuffer[1] = RegisterValue;
+
+  Status = XIicPs_MasterSendPolled(IIc, SendBuffer, 2, OV9655_DEVICE_WRITE_ADDRESS);
+  if (Status != XST_SUCCESS){
+    xil_printf("IIC_SEND_FAIL\n\r");
+  }
+
+  /* Attente fin communication I2C */
+  while (XIicPs_BusIsBusy(IIc)) {}
+}
+
+u8 OV9655_ReadRegister(XIicPs *IIc, u8 RegAddr)
+{
+  int Status;
+  u8 RecvBuffer[1]={0};
+  u8 SendBuffer[1];
+
+  SendBuffer[0]=RegAddr;
+
+  Status = XIicPs_MasterSendPolled(IIc, SendBuffer, 1, OV9655_DEVICE_WRITE_ADDRESS);
+  if (Status != XST_SUCCESS){
+    xil_printf("IIC_SEND_FAIL\n\r");
+  }
+
+  /* Attente fin communication I2C */
+  while (XIicPs_BusIsBusy(IIc)) {}
+
+  Status = XIicPs_MasterRecvPolled(IIc, RecvBuffer, 1, OV9655_DEVICE_READ_ADDRESS);
+  if (Status != XST_SUCCESS){
+    xil_printf("IIC_RECEIVE_FAIL\n\r");
+  }
+
+  /* Attente fin communication I2C */
+  while (XIicPs_BusIsBusy(IIc)) {}
+
+  return RecvBuffer[0];
+}
+
+
+void OV9655_Config(XIicPs *IIc, cam_reg cam_config[], int cam_config_n)
+{
+  u8 read_value = 0;
+  volatile int cpt = 0;
+  xil_printf("OV9655 config \n\r");
+  /* Ecrit les registres deux fois !*/
+  for(cpt=0;cpt<cam_config_n;cpt++)
+    OV9655_WriteRegister(IIc, cam_config[cpt].reg, cam_config[cpt].val);
+  for(cpt=0;cpt<cam_config_n;cpt++)
+    OV9655_WriteRegister(IIc, cam_config[cpt].reg, cam_config[cpt].val);
+  
+}
+
+/* Lit les registre et réécrit les bits du mask tels quels */
+void OV9655_Config_rw(XIicPs *IIc, cam_reg_rw cam_config[], int cam_config_n)
+{
+  u8 read_value = 0;
+  volatile int cpt = 0;
+ 
+  for(cpt=0;cpt<cam_config_n;cpt++)
+    {
+      read_value = OV9655_ReadRegister(IIc, cam_config[cpt].reg );
+      read_value = (read_value & cam_config[cpt].mask) | cam_config[cpt].val;
+      OV9655_WriteRegister(IIc, cam_config[cpt].reg, read_value);
+    }
+  for(cpt=0;cpt<cam_config_n;cpt++)
+    {
+      read_value = OV9655_ReadRegister(IIc, cam_config[cpt].reg );
+      read_value = (read_value & cam_config[cpt].mask) | cam_config[cpt].val;
+      OV9655_WriteRegister(IIc, cam_config[cpt].reg, read_value);
+    }
+}

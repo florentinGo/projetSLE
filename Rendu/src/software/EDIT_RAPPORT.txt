@@ -1,0 +1,8 @@
+Le bug reporté en section "Travail effectué/En logiciel" du rapport a été compris et corrigé.
+
+Il venait du fait que nous utilisions la version optimisée de la compression pour le hardware.
+Lorsque la hauteur de la zone à traiter devenait impaire, l'image en haut à gauche laissait en dessous d'elle une bande horizontale de pixels non traités. Ceci est normal, cependant, pour la décompression, il faut que cette bande corresponde bien au bas de l'image compressée. Or, dans la version optimisée, elle correspond en fait à la moitié d'une ligne de l'image dans le niveau de compression précédent, puisque cette ligne n'est pas recopiée par le soft.
+
+Pour débugger le programme en gardant l'optimisation, on peut systématiquement copier une ligne de plus que la carré de taille hi/2 X wi/2.
+
+Dans les sources software du rendu, du coup, on a utilisé la version non optimisée de la compression.

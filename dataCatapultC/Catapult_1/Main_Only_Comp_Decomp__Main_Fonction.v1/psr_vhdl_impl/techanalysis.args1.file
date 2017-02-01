@@ -1,0 +1,13 @@
+10:-pipe_flow
+6:-quiet
+8:-out_dir
+125:/tp/xph3sle/xph3sle512/ProjetSLE_bis/dataCatapultC/Catapult_1/Main_Only_Comp_Decomp__Main_Fonction.v1/psr_vhdl_impl//rtlc.out
+4:-vhf
+144:/tp/xph3sle/xph3sle512/ProjetSLE_bis/dataCatapultC/Catapult_1/Main_Only_Comp_Decomp__Main_Fonction.v1/psr_vhdl_impl//hdlAnalyze_techcellvhdlfile
+25:-comment_transoff_regions
+13:-lib_map_file
+125:/tp/xph3sle/xph3sle512/ProjetSLE_bis/dataCatapultC/Catapult_1/Main_Only_Comp_Decomp__Main_Fonction.v1/psr_vhdl_impl//.jaguarc
+9:-override
+9:-keeplast
+109:+incdir+/tp/xph3sle/xph3sle512/ProjetSLE_bis/dataCatapultC/Catapult_1/Main_Only_Comp_Decomp__Main_Fonction.v1
+17:+define+synthesis

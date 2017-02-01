@@ -1,0 +1,52 @@
+16:57:01.988 INFO  - Processing command line option -hwspec /tima/smancini/Zybo/zybo_cam/zybo_simple/SDK/SDK_Export/hw/system.xml. 
+10:20:44.737 ERROR - Unexpected error while launching program. com.xilinx.sdk.targetmanager.TMException: 
+    Failed to Open JTAG Cable
+    Cable target is not connected to the host
+
+	at com.xilinx.sdk.targetmanager.internal.TM.connectToProcessor(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+10:25:59.203 INFO  - Invoking Bootgen:  
+10:26:00.792 INFO  - Bootgen command execution is done. 
+10:32:41.348 INFO  - FPGA configured successfully with bitstream "/tp/xph3sle/xph3sle504/TP/zybo_cam/zybo_cam_ise/zybo_cam/system_top.bit" 
+10:33:13.720 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:33:13.827 INFO  - PS initialization will be done as it is not done before. 
+10:33:13.831 INFO  - Running PS initialization.... 
+10:33:14.368 INFO  - ps7_init is completed. 
+10:33:14.468 INFO  - PS Initialization is complete. 
+10:33:30.384 INFO  - ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+10:33:38.150 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:33:56.243 INFO  - ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+10:33:58.350 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:34:33.824 INFO  - FPGA configured successfully with bitstream "/tp/xph3sle/xph3sle504/TP/zybo_cam/zybo_cam_ise/zybo_cam/system_top.bit" 
+10:35:02.010 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:35:02.110 INFO  - PS initialization will be done as it is not done before. 
+10:35:02.112 INFO  - Running PS initialization.... 
+10:35:02.562 INFO  - ps7_init is completed. 
+10:35:02.662 INFO  - PS Initialization is complete. 
+10:36:27.557 INFO  - ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+10:36:30.543 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:36:54.350 INFO  - ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+10:36:57.903 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:37:33.660 INFO  - ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+10:37:36.321 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:38:17.464 INFO  - ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+10:38:19.793 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:39:09.449 INFO  - ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+10:39:11.667 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:39:35.233 INFO  - ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+10:39:40.408 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:40:43.344 ERROR - Unexpected error while obtaining referenced S/W project {} org.eclipse.core.internal.resources.ResourceException: Resource '/RemoteSystemsTempFiles' is not open.
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Project.java:150)
+	at org.eclipse.core.internal.resources.Project.getReferencedProjects(Project.java:521)
+
+10:41:15.193 INFO  - ps7_cortexa9_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+10:41:18.375 INFO  - Processor reset is completed for ps7_cortexa9_0 
+10:41:38.806 INFO  - FPGA Cable Disconnected. All active launches will be terminated. 
+10:42:10.248 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+09:03:59.292 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+12:08:13.289 ERROR - Unable to read in MSS file /tp/xph3sle/xph3sle504/TP/zybo_cam/wk_cam/zybo_cam_bsp/system.mss. 
+12:08:13.355 ERROR - Unable to read in MSS file /tp/xph3sle/xph3sle504/TP/zybo_cam/wk_cam/zybo_cam_bsp/system.mss. 
+12:08:13.607 WARN  - Unable to determine location of documentation for OS . 
+12:08:13.647 ERROR - Unable to read in MSS file /tp/xph3sle/xph3sle504/TP/zybo_cam/wk_cam/zybo_cam_bsp/system.mss. 
+12:08:13.811 ERROR - Unable to read in MSS file /tp/xph3sle/xph3sle504/TP/zybo_cam/wk_cam/zybo_cam_bsp/system.mss. 

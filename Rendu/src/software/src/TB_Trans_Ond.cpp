@@ -1,0 +1,144 @@
+#include "Main_Trans_Ond.h"
+#include "Main_Decomp_Ond.h"
+#include "globals.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fstream>
+#include <string.h>
+#include <mc_scverify.h>
+
+
+using namespace std;
+
+CCS_MAIN(int argc, char *argv[]) {
+
+	// argv[1] : Nombre de niveaux de décompression
+	// argv[2] : Qualité de l'image décompressée (0 est la meilleure qualité possible, argv[1] la pire)
+	// argv[3] : Nom de l'image Destination de la décompression
+	// argv[4] : Nom de l'image Destination de la compression
+
+	ac_int<8,false> image[256*512];
+	ac_int<8,false> comp[256*512];
+	unsigned int i;
+	unsigned int j;
+	int useless;
+	std::string dumb_string;
+
+	if (argc != 5) {
+		cout << "ERREUR: ";
+		cout << "Il faut quatre arguments : " << endl <<
+			"	Nombre de niveaux de décompression" << endl <<
+			"	Qualité de l'image décompressée (0 est la meilleure qualité possible, argv[1] la pire)" << endl <<
+			"	Nom de l'image Destination de la décompression" << endl <<
+			"	Nom de l'image Destination de la compression" << endl;
+		return 0;
+	}
+
+
+		/****************** START OF COMPRESSION *************************/
+
+	std::ifstream fichier(IMAGE_SOURCE, std::ios::in);
+
+
+	//ecriture du fichier de test
+	if(!fichier) {
+		std::cout << "ça ne lit pas le fichier" << std::endl;
+		CCS_RETURN(1);
+	}
+	getline(fichier, dumb_string);
+	fichier >> useless >> useless >> useless;
+#ifdef DEBUG
+	std::cout << " img " << dumb_string << useless << std::endl;
+#endif
+	for(i = 0; i < HEIGHT_IMAGE; i++) {
+	for(j = 0; j < WIDTH_IMAGE; j++) {
+		fichier >> useless;
+		image[i*512 + j]  = useless;
+	}
+	}
+	fichier.close();
+
+#ifdef DEBUG
+	std::cout << "TB_JPEG2000 : Fichier Source OK" << std::endl;
+#endif
+
+	//appel du programme principal
+	CCS_DESIGN(Main_Trans_Ond)(image, comp, atoi(argv[1]));
+
+	//ecriture du resultat
+#ifdef DEBUG
+	std::cout << "TB_JPEG2000 : Main_Trans_Ond OK" << std::endl;
+#endif
+	std::ofstream fichier_out(argv[3], std::ios::out);
+	if(!fichier_out) {
+			std::cerr << "ça n'ecrit pas le fichier" << std::endl;
+			CCS_RETURN(1);
+	}
+	fichier_out << "P2" << std::endl 
+				<< WIDTH_IMAGE << " " << HEIGHT_IMAGE << std::endl 
+				<< "255" << std::endl;
+	for(i = 0; i < HEIGHT_IMAGE; i++) {
+	for(j = 0; j < WIDTH_IMAGE; j++) {
+			fichier_out << comp[i*512 + j] << " ";
+	}
+	}
+	fichier_out << std::endl;
+	fichier_out.close();
+
+	/****************** END OF COMPRESSION ***************************/
+
+	/***************** START OF DECOMPRESSION ************************/
+
+		//ecriture du fichier de test
+		std::ifstream fichierD(argv[3], std::ios::in);
+		if(!fichierD) {
+				std::cout << "ça ne lit pas le fichier" << std::endl;
+				CCS_RETURN(1);
+		}
+		getline(fichierD, dumb_string);
+		getline(fichierD, dumb_string);
+		getline(fichierD, dumb_string);
+		//fichier >> useless >> useless >> useless;
+		//std::cout << " img " << dumb_string << useless << std::endl;
+RamD_Y : for(i = 0; i < HEIGHT_IMAGE; i++) {
+RamD_X : for(j = 0; j < WIDTH_IMAGE; j++) {
+				 fichierD >> useless;
+				 image[i*512 + j]  = useless;
+		 }
+		 }
+		 fichierD.close();
+#ifdef DEBUG
+		 std::cout << "TB_JPEG2000 : Fichier Sortie OK" << std::endl;
+#endif
+
+		 //appel du programme principal
+		 CCS_DESIGN(Main_Decomp_Ond)(image, comp, atoi(argv[1]), atoi(argv[2]));
+
+		 //ecriture du resultat
+#ifdef DEBUG
+		 std::cout << "TB_JPEG2000 : Main_Decomp_Ond OK" << std::endl;
+#endif
+
+		 std::ofstream fichierD_out(argv[4], std::ios::out);
+		 if(!fichierD_out) {
+				 std::cerr << "ça n'ecrit pas le fichier" << std::endl;
+				 CCS_RETURN(1);
+		 }
+		 fichierD_out << "P2" << std::endl
+				 << WIDTH_IMAGE << " " << HEIGHT_IMAGE << std::endl
+				 << "255" << std::endl;
+OndD_Y : for(i = 0; i < HEIGHT_IMAGE; i++) {
+OndD_X : for(j = 0; j < WIDTH_IMAGE; j++) {
+				 fichierD_out << (ac_int<8, false>) comp[i*512 + j] << endl;
+		 }
+		 }
+		 fichierD_out << std::endl;
+		 fichierD_out.close();
+
+
+		/***************** END OF DECOMPRESSION **************************/
+
+
+		 CCS_RETURN(0);
+		}

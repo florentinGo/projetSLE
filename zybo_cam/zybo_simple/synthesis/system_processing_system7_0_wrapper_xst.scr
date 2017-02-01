@@ -1,0 +1,14 @@
+set -tmpdir /tima/smancini/Zybo/zybo_cam/zybo_simple/synthesis/xst_temp_dir/
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc7z010clg400-3
+-top system_processing_system7_0_wrapper
+-ifmt MIXED
+-ifn system_processing_system7_0_wrapper_xst.prj
+-ofn ../implementation/system_processing_system7_0_wrapper.ngc
+-hierarchy_separator /
+-iobuf NO
+-sd {../implementation}
+-vlgincdir {"/tima/smancini/Zybo/zybo_cam/zybo_simple/pcores/" "/softslin/ise_edk_147i/14.7/ISE_DS/EDK/hw/XilinxBFMinterface/pcores/" "/softslin/ise_edk_147i/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/" }
