@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="par" timeStamp="Wed Feb  1 18:47:29 2017">
+  <application stringID="par" timeStamp="Fri Feb  3 11:21:03 2017">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
@@ -53,7 +53,7 @@
         <column stringID="speed"/>
         <row stringID="row" value="0">
           <item stringID="arch" value="Intel(R) Core(TM)2 Duo CPU     E8400  @ 3.00GHz"/>
-          <item stringID="speed" value="3000.000 MHz"/>
+          <item stringID="speed" value="2667.000 MHz"/>
         </row>
       </table>
     </section>
@@ -68,24 +68,24 @@
     <task stringID="PAR_DEVICE_UTILIZATION">
       <section label="Device Utilization Summary" stringID="PAR_DEVICE_UTLIZATION">
         <item AVAILABLE="32" dataType="int" label="Number of BUFGs" stringID="PAR_BUFG" value="6"/>
-        <item AVAILABLE="4400" dataType="int" stringID="PAR_SLICES" value="4147"/>
-        <item AVAILABLE="35200" dataType="int" label="Number of Slice Registers" stringID="PAR_SLICE_REGISTERS" value="3850">
-          <item dataType="int" label="Number used as Flip Flops" stringID="PAR_FLIP_FLOPS" value="3850"/>
+        <item AVAILABLE="4400" dataType="int" stringID="PAR_SLICES" value="4129"/>
+        <item AVAILABLE="35200" dataType="int" label="Number of Slice Registers" stringID="PAR_SLICE_REGISTERS" value="3810">
+          <item dataType="int" label="Number used as Flip Flops" stringID="PAR_FLIP_FLOPS" value="3810"/>
           <item dataType="int" label="Number used as Latches" stringID="PAR_LATCHES" value="0"/>
           <item dataType="int" label="Number used as LatchThrus" stringID="PAR_LATCH_THRUS" value="0"/>
         </item>
-        <item AVAILABLE="17600" dataType="int" label="Number of Slice LUTS" stringID="PAR_SLICE_LUTS" value="13911"/>
-        <item AVAILABLE="17600" dataType="int" label="Number of Slice LUT-Flip Flop pairs" stringID="PAR_SLICE_LUT_FLIPFLOP_PAIRS" value="14512"/>
+        <item AVAILABLE="17600" dataType="int" label="Number of Slice LUTS" stringID="PAR_SLICE_LUTS" value="13976"/>
+        <item AVAILABLE="17600" dataType="int" label="Number of Slice LUT-Flip Flop pairs" stringID="PAR_SLICE_LUT_FLIPFLOP_PAIRS" value="14513"/>
       </section>
     </task>
     <task stringID="PAR_PAR">
       <section stringID="PAR_DESIGN_SUMMARY">
-        <item stringID="PAR_REAL_TIME_COMPLETION_ROUTER" value="4 mins 20 secs "/>
-        <item stringID="PAR_CPU_TIME_COMPLETION_ROUTER" value="4 mins 23 secs "/>
+        <item stringID="PAR_REAL_TIME_COMPLETION_ROUTER" value="4 mins 30 secs "/>
+        <item stringID="PAR_CPU_TIME_COMPLETION_ROUTER" value="4 mins 28 secs "/>
         <item dataType="int" stringID="PAR_UNROUTES" value="0"/>
-        <item dataType="float" stringID="PAR_TIMING_SCORE" value="198683152.000000"/>
-        <item stringID="PAR_REAL_TIME_COMPLETION_PAR" value="5 mins 24 secs "/>
-        <item stringID="PAR_CPU_TIME_COMPLETION_PAR" value="5 mins 27 secs "/>
+        <item dataType="float" stringID="PAR_TIMING_SCORE" value="188369680.000000"/>
+        <item stringID="PAR_REAL_TIME_COMPLETION_PAR" value="5 mins 35 secs "/>
+        <item stringID="PAR_CPU_TIME_COMPLETION_PAR" value="5 mins 32 secs "/>
       </section>
     </task>
     <task stringID="PAR_par">
@@ -104,8 +104,8 @@
             <item label="Routed" stringID="ROUTED" value="ROUTED"/>
             <item label="Resource" stringID="RESOURCE" value="BUFGCTRL_X0Y17"/>
             <item label="Locked" stringID="LOCKED" value="No"/>
-            <item dataType="float" label="Fanout" stringID="FANOUT" value="1783.000000"/>
-            <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.104000"/>
+            <item dataType="float" label="Fanout" stringID="FANOUT" value="1731.000000"/>
+            <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.109000"/>
             <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="1.345000"/>
           </row>
           <row stringID="row" value="2">
@@ -113,9 +113,9 @@
             <item label="Routed" stringID="ROUTED" value="ROUTED"/>
             <item label="Resource" stringID="RESOURCE" value="BUFGCTRL_X0Y30"/>
             <item label="Locked" stringID="LOCKED" value="No"/>
-            <item dataType="float" label="Fanout" stringID="FANOUT" value="52.000000"/>
-            <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.049000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="1.301000"/>
+            <item dataType="float" label="Fanout" stringID="FANOUT" value="38.000000"/>
+            <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.024000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="1.324000"/>
           </row>
           <row stringID="row" value="3">
             <item label="Clock Net" stringID="CLOCK_NET" value="system_i/processing_system7_0_FCLK_CLK0"/>
@@ -3042,7 +3042,7 @@
       <section stringID="PAR_UNROUTES_REPORT">
         <item dataType="int" stringID="PAR_UNROUTED_NETS" value="0"/>
         <item dataType="int" stringID="PAR_TOTAL_SOURCELESS_NETS" value="0"/>
-        <item dataType="int" stringID="PAR_TOTAL_LOADLESS_NETS" value="1381"/>
+        <item dataType="int" stringID="PAR_TOTAL_LOADLESS_NETS" value="1391"/>
       </section>
     </task>
   </application>

@@ -166,3 +166,23 @@ map -intstyle ise -p xc7z010-clg400-3 -w -logic_opt off -ol high -t 1 -xt 0 -reg
 par -w -intstyle ise -ol high -mt off system_top_map.ncd system_top.ncd system_top.pcf 
 trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml system_top.twx system_top.ncd -o system_top.twr system_top.pcf 
 bitgen -intstyle ise -f system_top.ut system_top.ncd 
+xst -intstyle ise -ifn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.xst" -ofn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.syr" 
+xst -intstyle ise -ifn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.xst" -ofn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../../../dataCatapultC/Catapult_2/Main_Comp_Decomp_Tot__Main_Fonction.v1/psr_vhdl_impl -sd ../../vhd/coregen -nt timestamp -uc /tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.ucf -bm edkBmmFile.bmm -p xc7z010-clg400-3 system_top.ngc system_top.ngd  
+map -intstyle ise -p xc7z010-clg400-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -u -lc off -power off -o system_top_map.ncd system_top.ngd system_top.pcf 
+par -w -intstyle ise -ol high -mt off system_top_map.ncd system_top.ncd system_top.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml system_top.twx system_top.ncd -o system_top.twr system_top.pcf 
+bitgen -intstyle ise -f system_top.ut system_top.ncd 
+xst -intstyle ise -ifn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.xst" -ofn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../../../dataCatapultC/Catapult_2/Main_Comp_Decomp_Tot__Main_Fonction.v1/psr_vhdl_impl -sd ../../vhd/coregen -nt timestamp -uc /tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.ucf -bm edkBmmFile.bmm -p xc7z010-clg400-3 system_top.ngc system_top.ngd  
+map -intstyle ise -p xc7z010-clg400-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -u -lc off -power off -o system_top_map.ncd system_top.ngd system_top.pcf 
+par -w -intstyle ise -ol high -mt off system_top_map.ncd system_top.ncd system_top.pcf 
+ngdbuild -intstyle ise -dd _ngo -sd ../../../dataCatapultC/Catapult_2/Main_Comp_Decomp_Tot__Main_Fonction.v1/psr_vhdl_impl -sd ../../vhd/coregen -nt timestamp -uc /tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.ucf -bm edkBmmFile.bmm -p xc7z010-clg400-3 system_top.ngc system_top.ngd  
+xst -intstyle ise -ifn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.xst" -ofn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../../../dataCatapultC/Catapult_2/Main_Comp_Decomp_Tot__Main_Fonction.v1/psr_vhdl_impl -sd ../../vhd/coregen -nt timestamp -uc /tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/vhd/system_top.ucf -bm edkBmmFile.bmm -p xc7z010-clg400-3 system_top.ngc system_top.ngd  
+map -intstyle ise -p xc7z010-clg400-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -u -lc off -power off -o system_top_map.ncd system_top.ngd system_top.pcf 
+par -w -intstyle ise -ol high -mt off system_top_map.ncd system_top.ncd system_top.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml system_top.twx system_top.ncd -o system_top.twr system_top.pcf 
+bitgen -intstyle ise -f system_top.ut system_top.ncd 
+xst -intstyle ise -ifn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.xst" -ofn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.syr" 
+xst -intstyle ise -ifn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.xst" -ofn "/tp/xph3sle/xph3sle512/ProjetSLE_bis/zybo_cam/zybo_cam_ise/zybo_cam/system_top.syr" 

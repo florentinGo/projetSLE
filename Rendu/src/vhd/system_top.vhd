@@ -4,12 +4,14 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.numeric_std.ALL;
 
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 
 library work;
 use work.packageVGA.all;
+
 
 entity system_top is
   Port ( processing_system7_0_MIO : inout std_logic_vector(53 downto 0);
@@ -120,7 +122,7 @@ end component VGA_generator;
 component Camera_Capture
     Port ( pclk : in STD_LOGIC;
     	   reset : in STD_LOGIC;
-         href : in STD_LOGIC;
+         	href : in STD_LOGIC;
 			vs_cam : in STD_LOGIC;
 			data_in : in STD_LOGIC_VECTOR (7 downto 0);
 			addr : out STD_LOGIC_VECTOR (16 downto 0);
@@ -136,8 +138,8 @@ component mem_lum_opt
     		addra : in STD_LOGIC_VECTOR(16 DOWNTO 0);
     		dina : in STD_LOGIC_VECTOR(7 DOWNTO 0);
     		clkb : in STD_LOGIC;
-   		addrb : in STD_LOGIC_VECTOR(16 DOWNTO 0);
-   		doutb : out STD_LOGIC_VECTOR(7 DOWNTO 0));
+   			addrb : in STD_LOGIC_VECTOR(16 DOWNTO 0);
+   			doutb : out STD_LOGIC_VECTOR(7 DOWNTO 0));
 end component mem_lum_opt;
 
 component multiplexer_RGB is
@@ -158,15 +160,16 @@ component multiplexer_RGB is
 			VGA_b : out STD_LOGIC_VECTOR (4 downto 0));
 end component multiplexer_RGB;
 
-component Main_Trans_Ond_Opt is
+component Main_Comp_Decomp_Tot_Main_Fonction is 
 	Port ( 
     start : IN STD_LOGIC;
     done : OUT STD_LOGIC;
-    nbLevels_rsc_z : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
-    nbLevels_triosy_lz : OUT STD_LOGIC;
+    nblevels_rsc_z : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+    nblevels_triosy_lz : OUT STD_LOGIC;
     Src_triosy_lz : OUT STD_LOGIC;
-    Dst_triosy_lz : OUT STD_LOGIC;
+    Comp_triosy_lz : OUT STD_LOGIC;
     Vga_triosy_lz : OUT STD_LOGIC;
+    --Main_Comp_Decomp_tot_Main_Fonction_return_triosy_lz : OUT STD_LOGIC;
     clk : IN STD_LOGIC;
     rst : IN STD_LOGIC;
     Src_rsc_singleport_data_in : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -174,19 +177,33 @@ component Main_Trans_Ond_Opt is
     Src_rsc_singleport_re : OUT STD_LOGIC;
     Src_rsc_singleport_we : OUT STD_LOGIC;
     Src_rsc_singleport_data_out : IN STD_LOGIC_VECTOR (7 DOWNTO 0);
-    Dst_rsc_singleport_data_in : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
-    Dst_rsc_singleport_addr : OUT STD_LOGIC_VECTOR (16 DOWNTO 0);
-    Dst_rsc_singleport_re : OUT STD_LOGIC;
-    Dst_rsc_singleport_we : OUT STD_LOGIC;
-    Dst_rsc_singleport_data_out : IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+    Comp_rsc_singleport_data_in : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+    Comp_rsc_singleport_addr : OUT STD_LOGIC_VECTOR (16 DOWNTO 0);
+    Comp_rsc_singleport_re : OUT STD_LOGIC;
+    Comp_rsc_singleport_we : OUT STD_LOGIC;
+    Comp_rsc_singleport_data_out : IN STD_LOGIC_VECTOR (7 DOWNTO 0);
     Vga_rsc_singleport_data_in : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
     Vga_rsc_singleport_addr : OUT STD_LOGIC_VECTOR (16 DOWNTO 0);
     Vga_rsc_singleport_re : OUT STD_LOGIC;
     Vga_rsc_singleport_we : OUT STD_LOGIC;
     Vga_rsc_singleport_data_out : IN STD_LOGIC_VECTOR (7 DOWNTO 0)
   );
-end component Main_Trans_Ond_Opt;
+end component Main_Comp_Decomp_Tot_Main_Fonction;
 
+--Ajout Ram_init
+component ram_init is
+  PORT (
+	clka : IN STD_LOGIC;
+	ena : IN STD_LOGIC;  
+	wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    	addra : IN STD_LOGIC_VECTOR(16 DOWNTO 0);
+    	dina : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    	clkb : IN STD_LOGIC;
+    	enb : IN STD_LOGIC;  
+  	addrb : IN STD_LOGIC_VECTOR(16 DOWNTO 0);
+    	doutb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+  );
+end component ram_init;
 
 signal clk_VGA, pclk_cam : STD_LOGIC; 
 signal we : STD_LOGIC_VECTOR(0 DOWNTO 0);
@@ -202,6 +219,7 @@ signal rst_VGA : STD_LOGIC;
 
 -- Signals linked to RAMs
 signal addra_1 : STD_LOGIC_VECTOR (16 downto 0);
+signal addrb_1, addrb_2, addrb_3 : STD_LOGIC_VECTOR (16 downto 0);
 signal dina_1, dina_2, dina_3, doutb_1, doutb_2, doutb_3 : STD_LOGIC_VECTOR (7 downto 0);
 signal we_1, we_2, we_3 : STD_LOGIC_VECTOR (0 downto 0);
 
@@ -213,15 +231,19 @@ signal addr_1_catC, addr_2_catC, addr_3_catC : STD_LOGIC_VECTOR (16 downto 0);
 
 -- Added for iteration
 signal cam_writting : STD_LOGIC_VECTOR(0 downto 0);
-type FSM_type is (WaitingForFrame, ReadingFrame, Treating, Synchronizing);
-signal etat_q, etat_d : FSM_type;
+type FSM_with_cam is (WaitingForFrame, ReadingFrame, Treating, Synchronizing);
+--type FSM_without_cam is (WaitingWC, TreatingWC);
+signal etat_cam_q, etat_cam_d : FSM_with_cam;
+--signal etat_q, etat_d : FSM_without_cam;
 
 -- Added for control of saturation
 signal saturate_sig : STD_LOGIC;
 
 -- Added for control of the level of compression
-signal nbLev_sig : STD_LOGIC_VECTOR (2 DOWNTO 0);
-signal pushed : BOOLEAN;
+signal nbLev_sig_q, nbLev_sig_d : STD_LOGIC_VECTOR (3 DOWNTO 0);
+signal pushed_q, pushed_d : BOOLEAN;
+type FSM_compression is (rst, switch_inc, switch_wait, switch_3);
+signal etat_comp_q, etat_comp_d : FSM_compression;
 
 begin
 
@@ -230,13 +252,13 @@ begin
 	we_2(0) <= not not_we_2;
 
 	-- Linking ram3 with the VGA handling module signals
-	data_VGA <= saturate(doutb_3, saturate_sig);
+	--data_VGA <= saturate(doutb_3, saturate_sig);
 
 	-- We control whether we saturate the final picture or not with a switch
-	saturate_sig <= switch_io(3);
+	saturate_sig <= '1'; --switch_io(3);
 	
 	-- This process is used to freeze the picture while observing the screen
-	freeze: process(switch_io)
+	freeze: process(switch_io, not_we_3)
 	begin
 		if switch_io(2) = '1'
 		then
@@ -247,104 +269,221 @@ begin
 	end process;
 	
 	-- We use some Leds to check the current level of compression right on the zybo card
-	print_nbLev: process(nbLev_sig)
+	print_nbLev: process(nbLev_sig_q)
 	begin
-		led_io(1) <= nbLev_sig(0);
-		led_io(2) <= nbLev_sig(1);
-		led_io(3) <= nbLev_sig(2);
+		led_io(1) <= nbLev_sig_q(0);
+		led_io(2) <= nbLev_sig_q(1);
+		led_io(3) <= nbLev_sig_q(2);
 	end process;
-
-	-- We use the buttons of the zybo card to change the level of compression
-	sync_nbLev: process(switch_io, push_io, rst_VGA, pushed)
+	
+	-- fsm for level of compression
+	sync_nbLev: process(clk_VGA)
 	begin
-		if rst_VGA = '1' then
-			nbLev_sig <= "000";
-			pushed <= false;
-		elsif switch_io(1) = '0' then
-			nbLev_sig <= "001";
-			pushed <= false;
-		elsif push_io(0) = '1' and pushed = false then
-			nbLev_sig <= nbLev_sig + 1;
-			pushed <= true;
-		elsif push_io(0) = '1' and pushed = true then
-			nbLev_sig <= nbLev_sig;
-			pushed <= true;
-		elsif push_io(0) = '0' then
-			nbLev_sig <= nbLev_sig;
-			pushed <= false;
-		end if;
-	end process;
-
-	sync_fsm: process(CAMERA_PCLK, rst_VGA)
-	begin
-		if rst_VGA = '1' then
-			etat_q <= WaitingForFrame;
-		elsif rising_edge(CAMERA_PCLK) then
-			etat_q <= etat_d;
+		if clk_VGA'event and clk_VGA = '1' then
+			if rst_VGA = '1' then
+				etat_comp_q <= rst;
+				nbLev_sig_q <= "0000";
+				
+			else
+				etat_comp_q <= etat_comp_d;
+				nbLev_sig_q <= nbLev_sig_d;		
+			end if;
 		end if;
 	end process;
 	
-	-- This fsm is used to coordinate the entries plugged on the ram1 and the
-	-- launch/stop of the CatapultC "Main_tran_ond_Opt" module.
-	fsm: process(etat_q, done_signal, cam_writting, dina_1_catC, data_cam, 
-						we, not_we_1, addr_1_catC, address_cam)
+	comb_nbLev: process(etat_comp_q, nbLev_sig_q, switch_io, push_io)	
+
 	begin
+		--Default
+		nbLev_sig_d <= nbLev_sig_q;
+		etat_comp_d <= etat_comp_q;
+
+		case etat_comp_q is
+			when rst =>
+
+				nbLev_sig_d <= "0000";
+
+				if push_io(0) = '1' then
+					etat_comp_d <= switch_wait;
+
+				end if;
+
+			when switch_wait =>
+				if push_io(0) = '0' then
+					etat_comp_d <= switch_inc;
+					nbLev_sig_d <= nbLev_sig_q;
+				end if;
+
+			when switch_inc =>
+
+				nbLev_sig_d <= nbLev_sig_q + 1;
+				
+				if nbLev_sig_q = 4 then
+					etat_comp_d <= rst;
+				else 
+					etat_comp_d <= switch_3;
 		
-		etat_d <= etat_q;
-
-		case etat_q is
-			when WaitingForFrame => -- Attente d'une nouvelle image à traiter.
-				start_signal <= '0';
-				dina_1 <= dina_1_catC;
-				we_1(0) <= not not_we_1;
-				addra_1 <= addr_1_catC;
-
-				if cam_writting = "1" then	
-					etat_d <= ReadingFrame;
 				end if;
+				
 
-			when ReadingFrame => -- Ecriture d'une nouvelle image à traiter dans ram1.
-				start_signal <= '0';
-				--dina_1 <= rgb2lum(data_cam);
-				dina_1 <= (( "000" & data_cam(15 downto 11)) +
-						data_cam(10 downto 5) +
-						data_cam(4 downto 0));
-				we_1 <= we;
-				addra_1 <= address_cam;
-
-				if cam_writting = "0" then
-					etat_d <= Treating;
+			when switch_3 =>
+				if push_io(0) = '1' then
+					etat_comp_d <= switch_wait;
 				end if;
-			
-			when Treating => -- La transformée en ondelettes est en cours.
-					 -- Le traitement se passe entre ram1 et ram2.
-					 -- Le résultat final est écrit dans ram3.
-				start_signal <= '1';
-				dina_1 <= dina_1_catC;
-				we_1(0) <= not not_we_1;
-				addra_1 <= addr_1_catC;
-
-				if done_signal = '1' then
-					etat_d <= Synchronizing;
-				end if;
-
-			when Synchronizing => -- Au cas où Camera_Capture est en train d'écrire une image,
-					      -- on attend qu'il termine.
-				start_signal <= '0';
-				dina_1 <= dina_1_catC;
-				we_1(0) <= not not_we_1;
-				addra_1 <= addr_1_catC;
-
-				if cam_writting = "0" then
-					etat_d <= WaitingForFrame;
-				end if;
-
-
-		end case;
+		end case;	
 	end process;
 
+	-- We use the buttons of the zybo card to change the level of compression
+	--sync_nbLev: process(switch_io, push_io, rst_VGA, pushed)
+	--begin
+	--	if rst_VGA = '1' then
+	--		nbLev_sig <= "000";
+	--		pushed <= false;
+	--	elsif switch_io(1) = '0' then
+	--		nbLev_sig <= "001";
+	--		pushed <= false;
+	--	elsif push_io(0) = '1' and pushed = false then
+	--		nbLev_sig <= nbLev_sig + 1;
+	--		pushed <= true;
+	--	elsif push_io(0) = '1' and pushed = true then
+	--		nbLev_sig <= nbLev_sig;
+	--		pushed <= true;
+	--	elsif push_io(0) = '0' then
+	--		nbLev_sig <= nbLev_sig;
+	--		pushed <= false;
+	--	end if;
+	--end process;
 
 
+--	sync_fsm: process(clk_VGA)
+--	begin
+--		if clk_VGA'event and clk_VGA = '1' then
+--			if rst_VGA = '1' then
+--				etat_q <= WaitingWC;
+--			else
+--				etat_q <= etat_d;
+--			end if;
+--		end if;
+--	end process;
+
+--	fsm: process(etat_q, done_signal, dina_1_catC, not_we_1, addr_1_catC)
+	
+--	begin
+--		etat_d <= etat_q;
+--		dina_1 <= dina_1_catC;
+--		we_1(0) <= not not_we_1;
+--		addra_1 <= addr_1_catC;
+			
+--		case etat_q is
+--			when WaitingWC =>
+--				start_signal <= '0';
+--				if done_signal = '0' then
+--					etat_d <= TreatingWC;
+--				end if; 
+
+--			when TreatingWC =>
+--				start_signal <= '1';
+--				if done_signal = '1' then
+--					etat_d <= WaitingWC;
+--				end if;
+--		end case;
+--	end process;
+
+		sync_fsm: process(clk_VGA)
+		begin
+			if clk_VGA'event and clk_VGA = '1' then
+				if rst_VGA = '1' then
+					etat_cam_q <= WaitingForFrame;
+				else
+					etat_cam_q <= etat_cam_d;
+				end if;
+			end if;
+		end process;
+
+		-- This fsm is used to coordinate the entries plugged on the ram1 and the
+		-- launch/stop of the CatapultC "Main_tran_ond_Opt" module.
+		fsm: process(etat_cam_q, done_signal, cam_writting, dina_1_catC, data_cam, 
+							we, not_we_1, addr_1_catC, address_cam)
+		begin
+	
+			etat_cam_d <= etat_cam_q;
+
+			case etat_cam_q is
+				when WaitingForFrame => -- Attente d'une nouvelle image à traiter.
+					start_signal <= '0';
+					dina_1 <= dina_1_catC;
+					we_1(0) <= not not_we_1;
+					addra_1 <= addr_1_catC;
+
+					if cam_writting = "1" then	
+						etat_cam_d <= ReadingFrame;
+					end if;
+
+				when ReadingFrame => -- Ecriture d'une nouvelle image à traiter dans ram1.
+					start_signal <= '0';
+					--dina_1 <= rgb2lum(data_cam);
+					dina_1 <= (( "000" & data_cam(15 downto 11)) +
+							data_cam(10 downto 5) +
+							data_cam(4 downto 0));
+					we_1 <= we;
+					addra_1 <= address_cam;
+
+					if cam_writting = "0" then
+						etat_cam_d <= Treating;
+					end if;
+			
+				when Treating => -- La transformée en ondelettes est en cours.
+						 -- Le traitement se passe entre ram1 et ram2.
+						 -- Le résultat final est écrit dans ram3.
+					start_signal <= '1';
+					dina_1 <= dina_1_catC;
+					we_1(0) <= not not_we_1;
+					addra_1 <= addr_1_catC;
+
+					if done_signal = '1' then
+						etat_cam_d <= Synchronizing;
+					end if;
+
+				when Synchronizing => -- Au cas où Camera_Capture est en train d'écrire une image,
+						      -- on attend qu'il termine.
+					start_signal <= '0';
+					dina_1 <= dina_1_catC;
+					we_1(0) <= not not_we_1;
+					addra_1 <= addr_1_catC;
+
+					if cam_writting = "0" then
+						etat_cam_d <= WaitingForFrame;
+					end if;
+
+			end case;
+		end process;
+
+
+		-- Changement de connexion Ram
+		change_VGA: process(switch_io, address_VGA, addr_1_catC, addr_2_catC, doutb_1, doutb_2, doutb_3, saturate_sig)
+
+		begin
+			--Ram 1 connected to VGA
+			if (switch_io(1) = '1') then
+				addrb_1 <= address_VGA;
+				--addrb_2 <= addr_2_catC;
+				addrb_3 <= "00000000000000000";
+				data_VGA <= saturate(doutb_1, saturate_sig);
+			--Ram 2 connected to VGA	
+			--elsif(switch_io(1) = '0' and switch_io(3) = '1') then
+				--addrb_1 <= addr_1_catC;
+				--addrb_2 <= address_VGA;
+				--addrb_3 <= "00000000000000000";
+				--data_VGA <= saturate(doutb_2, saturate_sig);
+			--Ram 3 connected to VGA
+			else
+				addrb_1 <= addr_1_catC;
+				--addrb_2 <= addr_2_catC;
+				addrb_3 <= address_VGA;
+				data_VGA <= saturate(doutb_3, saturate_sig);	
+			end if;
+		end process;		
+		
 system_i: system
 	 Port map ( processing_system7_0_MIO => processing_system7_0_MIO,
 			 processing_system7_0_PS_SRSTB => processing_system7_0_PS_SRSTB,
@@ -397,22 +536,23 @@ pll: clk_pll
 
 vga: VGA_generator
     Port map ( clk => clk_VGA,
-    		  btn3 => push_io(3),
-           Hsync => hs,
-           Vsync => vs,
-			  addr => address_VGA,
-			  coord => coord_VGA,
-			  activeArea => img_active,
-			  reset => rst_VGA
+	  	btn3 => push_io(3),
+           	Hsync => hs,
+           	Vsync => vs,
+	  	addr => address_VGA,
+	  	coord => coord_VGA,
+	  	activeArea => img_active,
+	  	reset => rst_VGA
 			  );
- sync_cam : process(CAMERA_PCLK)
- begin
+ 
+sync_cam : process(CAMERA_PCLK)
+begin
   if rising_edge(CAMERA_PCLK) then
 		CAMERA_DATA_q  <= CAMERA_DATA ;
 		CAMERA_HS_q <= CAMERA_HS;
 		CAMERA_VS_q <= CAMERA_VS;
   end if;
- end process sync_cam;
+end process sync_cam;
 
 capture: Camera_Capture
     Port map ( pclk => CAMERA_PCLK,
@@ -426,37 +566,49 @@ capture: Camera_Capture
            we => we,
 	   writting => cam_writting
 			  );
-			  
+--ram1: ram_init
+--	Port map ( clka => CAMERA_PCLK,
+--	  			ena => '1', 
+--		  		wea => we_1,
+ -- 		  		addra => addra_1,
+   -- 		  	dina => dina_1,
+    --		  	clkb => clk_VGA,
+     --     		enb => '1',
+   	--	  		addrb => addrb_1, --addr_1_catC,
+   		--  		doutb => doutb_1
+	--);
+
+--Image a traiter est dans ram1			  
 ram1: mem_lum_opt
 	 Port map ( clka => CAMERA_PCLK, 
 		  wea => we_1,
-    		  addra => addra_1,
-    		  dina => dina_1,
-    		  clkb => CAMERA_PCLK,
-   		  addrb => addr_1_catC,
+  		  addra => addra_1,
+		  dina => dina_1,
+		  clkb => clk_VGA,
+   		  addrb => addrb_1, --addr_1_catC,
    		  doutb => doutb_1
    		  );
 			  
 ram2: mem_lum_opt
-	 Port map ( clka => CAMERA_PCLK, 
-		  wea => we_2,
-    		  addra => addr_2_catC,
-    		  dina => dina_2,
-    		  clkb => CAMERA_PCLK,
-   		  addrb => addr_2_catC,
-   		  doutb => doutb_2
+	 Port map ( clka => clk_VGA, 
+		  		wea => we_2,
+    		  	addra => addr_2_catC,
+    		  	dina => dina_2,
+    		  	clkb => clk_VGA,
+   		  		addrb => addr_2_catC, --addrb_2, 
+   		  		doutb => doutb_2
    		  );
 			  
 ram3: mem_lum_opt
-	 Port map ( clka => CAMERA_PCLK, 
-		  wea => we_3,
-    		  addra => addr_3_catC,
-    		  dina => dina_3,
-    		  clkb => CAMERA_PCLK,
-   		  addrb => address_VGA,
-   		  doutb => doutb_3
+	 Port map ( clka => clk_VGA, 
+	  			wea => we_3,
+   		  		addra => addr_3_catC,
+    		  	dina => dina_3,
+    		  	clkb => clk_VGA,
+   		  		addrb => addrb_3,
+   		  		doutb => doutb_3
    		  );
-   		  
+
 mux: multiplexer_RGB
 	Port map ( clk => clk_VGA,
     		  sw0 => switch_io(0),
@@ -475,26 +627,28 @@ mux: multiplexer_RGB
 			  VGA_b => BLUE
 			  );
 
-trans_ond: Main_Trans_Ond_Opt
+comp_decomp_tot : Main_Comp_Decomp_Tot_Main_Fonction
 	Port map ( 
 		start => start_signal,
 		done => done_signal,
-		nbLevels_rsc_z => nbLev_sig,
-		nbLevels_triosy_lz => open,
-		Dst_triosy_lz => open,
+		nblevels_rsc_z => nbLev_sig_q,
+		nblevels_triosy_lz => open,
 		Src_triosy_lz => open,
-		clk => CAMERA_PCLK,  --clk_VGA,
+		Vga_triosy_lz => open,
+		Comp_triosy_lz => open,
+		--Main_Comp_Decomp_tot_Main_Fonction_return_triosy_lz => open,
+		clk => clk_VGA, --CAMERA_PCLK,  --clk_VGA,
 		rst => rst_VGA,
 		Src_rsc_singleport_data_in => dina_1_catC,
 		Src_rsc_singleport_addr => addr_1_catC,
 		Src_rsc_singleport_re => open,
 		Src_rsc_singleport_we => not_we_1,
 		Src_rsc_singleport_data_out => doutb_1,
-		Dst_rsc_singleport_data_in => dina_2,
-		Dst_rsc_singleport_addr => addr_2_catC,
-		Dst_rsc_singleport_re => open,
-		Dst_rsc_singleport_we => not_we_2,
-		Dst_rsc_singleport_data_out => doutb_2,
+		Comp_rsc_singleport_data_in => dina_2,
+		Comp_rsc_singleport_addr => addr_2_catC,
+		Comp_rsc_singleport_re => open,
+		Comp_rsc_singleport_we => not_we_2,
+		Comp_rsc_singleport_data_out => doutb_2,
 		Vga_rsc_singleport_data_in => dina_3,
 		Vga_rsc_singleport_addr => addr_3_catC,
 		Vga_rsc_singleport_re => open,

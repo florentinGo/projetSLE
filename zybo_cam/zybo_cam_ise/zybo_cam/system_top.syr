@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> 
 Reading design: system_top.prj
@@ -697,9 +697,9 @@ Asynchronous Control Signals Information:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Control Signal                                                                                                                                                                                                                                                                  | Buffer(FF name)                                                                                                                                   | Load  |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-ram1/N1(ram1/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B) | 44    |
-ram2/N1(ram2/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram2/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B) | 22    |
-ram3/N1(ram3/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram)     | 22    |
+ram1/N1(ram1/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram)     | 44    |
+ram2/N1(ram2/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram2/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B) | 22    |
+ram3/N1(ram3/XST_GND:G)                                                                                                                                                                                                                                                         | NONE(ram3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B) | 22    |
 ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/cascadelata_tmp(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B:CASCADEOUTA)  | NONE(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_T) | 2     |
 ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/cascadelatb_tmp(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B:CASCADEOUTB)  | NONE(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_T) | 2     |
 ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v6_noinit.ram/cascadelata_tmp(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_B:CASCADEOUTA)| NONE(ram1/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v6_noinit.ram/NO_BMM_INFO.SDP.CASCADED_PRIM36.ram_T)| 2     |
@@ -766,7 +766,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'pll/clkout0'
   Clock period: 126.143ns (frequency: 7.928MHz)
-  Total number of paths / destination ports: 15786582914529823259175688708534333452409317297740882237003368148030440603193005369697534063827448836925503354507230769022721492577681408 / 7507
+  Total number of paths / destination ports: 15786582914529828423675444882351512764247661303764630896414953806477466264511718450992778097509838096216209914782893640829065438072668160 / 7507
 -------------------------------------------------------------------------
 Delay:               126.143ns (Levels of Logic = 2320)
   Source:            comp_decomp_tot/Main_Comp_Decomp_Tot_Main_Fonction_core_inst/reg_reg_div_mgc_div_a_tmp(2) (FF)
@@ -3239,13 +3239,13 @@ pll/clkout0    |  126.143|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 45.00 secs
-Total CPU time to Xst completion: 41.32 secs
+Total REAL time to Xst completion: 42.00 secs
+Total CPU time to Xst completion: 41.61 secs
  
 --> 
 
 
-Total memory usage is 607272 kilobytes
+Total memory usage is 607284 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  106 (   0 filtered)

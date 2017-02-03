@@ -1,10 +1,30 @@
 Release 14.7 Drc P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Wed Feb  1 18:56:17 2017
+Fri Feb  3 11:30:01 2017
 
 drc -z system_top.ncd system_top.pcf
 
+WARNING:PhysDesignRules:367 - The signal <CAMERA_VS_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <CAMERA_HS_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <CAMERA_DATA<1>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <CAMERA_DATA<2>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <CAMERA_DATA<3>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <CAMERA_DATA<4>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <CAMERA_DATA<0>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <CAMERA_DATA<5>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <CAMERA_DATA<6>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <CAMERA_DATA<7>_IBUF> is incomplete.
+   The signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <switch_io<3>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
@@ -3875,31 +3895,61 @@ WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/S_AXI_HP3_WREADY> is incomplete. The signal
    does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SDIO0_DATA_T<3>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/GPIO_T<51>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<57>> is incomplete. The signal does not
+   <system_i/processing_system7_0/I2C1_SDA_T> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<43>> is incomplete. The signal does not
+   <system_i/processing_system7_0/GPIO_T<56>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<0>> is incomplete. The signal does not
+   <system_i/processing_system7_0/I2C1_SCL_T> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<5>> is incomplete. The signal does not
+   <system_i/processing_system7_0/GPIO_T<12>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<22>> is incomplete. The signal does not
+   <system_i/processing_system7_0/SDIO1_DATA_T<3>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<54>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO0_CMD_T> is incomplete. The signal does
+   <system_i/processing_system7_0/GPIO_T<10>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SDIO1_DATA_T<2>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<38>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SDIO1_CMD_T> is incomplete. The signal does
    not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/ENET0_MDIO_T> is incomplete. The signal does
-   not drive any load pins in the design.
+   <system_i/processing_system7_0/GPIO_T<50>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<35>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<3>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<21>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<27>> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/SPI1_SCLK_T> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SPI0_MOSI_T> is incomplete. The signal does
    not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/GPIO_T<61>> is incomplete. The signal does not
@@ -3908,187 +3958,172 @@ WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/PJTAG_TD_T> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<53>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<42>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<41>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<2>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO1_CMD_T> is incomplete. The signal does
-   not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<35>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<38>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<29>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<4>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<20>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO0_DATA_T<0>> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO0_DATA_T<1>> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<52>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO1_DATA_T<1>> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO0_DATA_T<2>> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<34>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<40>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/GPIO_T<60>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<11>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO0_DATA_T<3>> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/ENET1_MDIO_T> is incomplete. The signal does
-   not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO1_DATA_T<3>> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<62>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<25>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<14>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO1_DATA_T<2>> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<17>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SPI0_MOSI_T> is incomplete. The signal does
-   not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<12>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<6>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<48>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SPI0_SCLK_T> is incomplete. The signal does
-   not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<45>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<49>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<37>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<30>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<28>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<31>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<13>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<3>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<36>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<58>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<44>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SPI0_MISO_T> is incomplete. The signal does
-   not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<24>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/GPIO_T<26>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<21>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SPI0_SS_T> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<47>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<46>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<23>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<27>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SPI1_MOSI_T> is incomplete. The signal does
-   not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<33>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<7>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<39>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<18>> is incomplete. The signal does not
+   <system_i/processing_system7_0/GPIO_T<29>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/SPI1_MISO_T> is incomplete. The signal does
    not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/I2C1_SCL_T> is incomplete. The signal does not
+   <system_i/processing_system7_0/GPIO_T<31>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<56>> is incomplete. The signal does not
+   <system_i/processing_system7_0/GPIO_T<15>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <comp_decomp_tot/Comp_rsc_singleport_re> is incomplete. The signal does not
+   <system_i/processing_system7_0/SPI0_SCLK_T> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<44>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<11>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<59>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<58>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SDIO0_DATA_T<2>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SDIO1_DATA_T<1>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<47>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<28>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<20>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SPI1_MOSI_T> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<22>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<49>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<23>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SPI0_SS_T> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<7>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<37>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<41>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<42>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<17>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<39>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<40>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<6>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/ENET1_MDIO_T> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<43>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<36>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SDIO0_CMD_T> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<33>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<4>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<62>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/ENET0_MDIO_T> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<14>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<2>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<52>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SDIO0_DATA_T<0>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<57>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<48>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<9>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<34>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<45>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<16>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<53>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SPI1_SS_T> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<30>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SDIO1_DATA_T<0>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SDIO0_DATA_T<1>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<46>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<13>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<24>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<0>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/GPIO_T<19>> is incomplete. The signal does not
@@ -4097,52 +4132,37 @@ WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/GPIO_T<1>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SDIO1_DATA_T<0>> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<54>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<9>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/GPIO_T<8>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<15>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<63>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<32>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<59>> is incomplete. The signal does not
-   drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<50>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
    <system_i/processing_system7_0/GPIO_T<55>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<10>> is incomplete. The signal does not
+   <system_i/processing_system7_0/GPIO_T<25>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/SPI1_SS_T> is incomplete. The signal does not
+   <system_i/processing_system7_0/GPIO_T<5>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/GPIO_T<16>> is incomplete. The signal does not
+   <system_i/processing_system7_0/GPIO_T<32>> is incomplete. The signal does not
    drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <system_i/processing_system7_0/I2C1_SDA_T> is incomplete. The signal does not
+   <system_i/processing_system7_0/GPIO_T<63>> is incomplete. The signal does not
    drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <comp_decomp_tot/Src_rsc_singleport_re>
-   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/GPIO_T<18>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <system_i/processing_system7_0/SPI0_MISO_T> is incomplete. The signal does
+   not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <comp_decomp_tot/Vga_rsc_singleport_re>
    is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <comp_decomp_tot/Src_rsc_singleport_re>
+   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <comp_decomp_tot/Comp_rsc_singleport_re> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <comp_decomp_tot/Vga_triosy_lz> is
    incomplete. The signal does not drive any load pins in the design.
-DRC detected 0 errors and 1381 warnings.  Please see the previously displayed
+DRC detected 0 errors and 1391 warnings.  Please see the previously displayed
 individual error or warning messages for more details.

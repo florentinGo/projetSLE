@@ -570,12 +570,12 @@ capture: Camera_Capture
 --	Port map ( clka => CAMERA_PCLK,
 --	  			ena => '1', 
 --		  		wea => we_1,
---  		  		addra => addra_1,
---    		  	dina => dina_1,
---    		  	clkb => clk_VGA,
---          		enb => '1',
- --  		  		addrb => addrb_1, --addr_1_catC,
-  -- 		  		doutb => doutb_1
+ -- 		  		addra => addra_1,
+   -- 		  	dina => dina_1,
+    --		  	clkb => clk_VGA,
+     --     		enb => '1',
+   	--	  		addrb => addrb_1, --addr_1_catC,
+   		--  		doutb => doutb_1
 	--);
 
 --Image a traiter est dans ram1			  
